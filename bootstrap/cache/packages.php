@@ -6,6 +6,13 @@
       0 => 'Barryvdh\\TranslationManager\\ManagerServiceProvider',
     ),
   ),
+  'bennett-treptow/laravel-migration-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelMigrationGenerator\\LaravelMigrationGeneratorProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
