@@ -203,7 +203,6 @@
         $.fn.selectpicker.Constructor.BootstrapVersion = '4';
     </script>
     @livewireScripts
-
     <script>
 $(document).ready(function(){
     $(".dropdown-toggle").hover(function(){
