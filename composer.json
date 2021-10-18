@@ -17,6 +17,7 @@
         "livewire/livewire": "^2.6",
         "snapappointments/bootstrap-select": "^1.13",
         "spatie/laravel-permission": "^4.3",
+        "wulfheart/pretty_routes": "^0.3.0",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.18"
     },

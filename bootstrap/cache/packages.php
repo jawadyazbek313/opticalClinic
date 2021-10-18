@@ -128,6 +128,17 @@
       0 => 'Tanmuhittin\\LaravelGoogleTranslate\\LaravelGoogleTranslateServiceProvider',
     ),
   ),
+  'wulfheart/pretty_routes' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Wulfheart\\PrettyRoutes\\PrettyRoutesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'PrettyRoutes' => 'Wulfheart\\PrettyRoutes\\PrettyRoutesFacade',
+    ),
+  ),
   'yajra/laravel-datatables-buttons' => 
   array (
     'providers' => 
