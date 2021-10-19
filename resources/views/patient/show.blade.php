@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row p-2">
-                        <div class="col hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-user {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.patientName') }}:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,14 +20,14 @@
                         </div>
                     </div>
                     <div class="row p-2">
-                        <div class="col-lg-4 col-md-6 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col-lg-4 col-md-6 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa {{($patient->gender=='male') ? "fa-mars" : "fa-venus"}} {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.Gender') }}:&nbsp;&nbsp;&nbsp;&nbsp;
                                 {{($patient->gender=='male') ? __('lang.genderOptionMale') : __('lang.genderOptionFemale')}}
                             </h3>
                         </div>
-                        <div class="marginTopResponsive hoverbadges col-lg-8 col-md-6 badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="marginTopResponsive hoverbadges col-lg-8 col-md-6 badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-tint {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.inpBloodType') }}:&nbsp;&nbsp;&nbsp;&nbsp; {{$patient->bloodtype}} </h3>
@@ -36,12 +36,12 @@
 
 
                     <div class="row p-2">
-                        <div class="col-lg-8 col-md-12 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col-lg-8 col-md-12 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-calendar-alt {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.dob') }}:&nbsp;&nbsp;&nbsp;&nbsp; {{$patient->dob}} </h3>
                         </div>
-                        <div class="marginTopResponsive col-lg-4 col-md-12 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="marginTopResponsive col-lg-4 col-md-12 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-calendar-alt {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.age') }}:&nbsp;&nbsp;&nbsp;&nbsp; @php
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="row p-2">
-                        <div class="col hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-user {{ (app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"}} "></i>
                                 {{ __('lang.inpInsuranceType') }}:&nbsp;&nbsp;&nbsp;&nbsp; {{$patient->insurance}} </h3>

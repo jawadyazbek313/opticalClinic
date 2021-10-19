@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row p-2">
-                        <div class="col hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-user <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.patientName')); ?>:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="row p-2">
-                        <div class="col-lg-4 col-md-6 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col-lg-4 col-md-6 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa <?php echo e(($patient->gender=='male') ? "fa-mars" : "fa-venus"); ?> <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.Gender')); ?>:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -28,7 +28,7 @@
 
                             </h3>
                         </div>
-                        <div class="marginTopResponsive hoverbadges col-lg-8 col-md-6 badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="marginTopResponsive hoverbadges col-lg-8 col-md-6 badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-tint <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.inpBloodType')); ?>:&nbsp;&nbsp;&nbsp;&nbsp; <?php echo e($patient->bloodtype); ?> </h3>
@@ -37,12 +37,12 @@
 
 
                     <div class="row p-2">
-                        <div class="col-lg-8 col-md-12 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col-lg-8 col-md-12 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-calendar-alt <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.dob')); ?>:&nbsp;&nbsp;&nbsp;&nbsp; <?php echo e($patient->dob); ?> </h3>
                         </div>
-                        <div class="marginTopResponsive col-lg-4 col-md-12 hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="marginTopResponsive col-lg-4 col-md-12 hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-calendar-alt <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.age')); ?>:&nbsp;&nbsp;&nbsp;&nbsp; <?php
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="row p-2">
-                        <div class="col hoverbadges badge badge-primary border shadow-sm">
+                        <div style="transition: all .5s ease-Out;" class="col hoverbadges badge badge-primary border shadow-sm">
                             <h3 class="mt-2"><i
                                     class="fa fa-user <?php echo e((app()->getlocale()=='ar') ? "float-right mr-2" : "float-left ml-2"); ?> "></i>
                                 <?php echo e(__('lang.inpInsuranceType')); ?>:&nbsp;&nbsp;&nbsp;&nbsp; <?php echo e($patient->insurance); ?> </h3>
