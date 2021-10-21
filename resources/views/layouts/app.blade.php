@@ -49,7 +49,7 @@
     </style>
 
     <style>
-    .dropdown:hover .dropdown-menu{
+    .nav-item:hover .dropdown-menu{
         display: block;
     }
     .dropdown-menu{
@@ -64,7 +64,7 @@
             navbar-expand-lg navbar-light bg-white shadow-sm sticky-top " data-nav-status="toggle">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="hoverbadges" src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
+                    <img style="transition: all 0.5s ease-in-out;" class="hoverbadges" src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -203,16 +203,7 @@
         $.fn.selectpicker.Constructor.BootstrapVersion = '4';
     </script>
     @livewireScripts
-    <script>
-$(document).ready(function(){
-    $(".dropdown-toggle").hover(function(){
-        var dropdownMenu = $(this).children(".dropdown-menu");
-        if(dropdownMenu.is(":visible")){
-            dropdownMenu.parent().toggleClass("open");
-        }
-    });
-});     
-</script>
+  
 </body>
 
 </html>

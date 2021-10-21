@@ -23,7 +23,7 @@ class PatientDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($row) {
-                $btn = '<div class="row text-center justify-content-center"><a href="/patient/'.$row->id.'" class="btn btn-primary btn-sm">Show</a><a href="/patient/'.$row->id.'/edit" class="edit btn btn-success btn-sm">Edit</a>';
+                $btn = '<div class="row text-center justify-content-center btn-group ltr"><a href="/patient/'.$row->id.'" class="btn btn-primary btn-sm">Show</a><a href="/patient/'.$row->id.'/edit" class="edit btn btn-success btn-sm">Edit</a>';
                 $x = '
                 
                 <form action="'.route('patient.destroy',$row->id).'" method="POST">
