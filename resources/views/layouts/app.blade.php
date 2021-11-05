@@ -16,7 +16,6 @@
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" defer></script>
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('js/gijgo.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
