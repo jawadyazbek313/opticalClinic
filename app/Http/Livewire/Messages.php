@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Message;
 use Livewire\Component;
 use App\Models\User;
+use Rainwater\Active\Active;
 class Messages extends Component
 {
 	public $message;
@@ -11,7 +12,7 @@ class Messages extends Component
 	public $sender;
     public function render()
     {
-    	$users=User::all();
+    	$users=User::with('active')->get();
     	$sender=$this->sender;
     	$this->allmessages;
         return view('livewire.messages',compact('users','sender'));
@@ -22,7 +23,7 @@ class Messages extends Component
         {
               $this->allmessages=Message::where('user_id',auth()->id())->where('receiver_id',$this->sender->id)->orWhere('user_id',$this->sender->id)->where('receiver_id',auth()->id())->orderBy('id','desc')->get();
 
-               $not_seen= Message::where('user_id',$this->sender->id)->where('receiver_id',auth()->id());
+               $not_seen= Message::where('user_id',$this->sender->id)->where('receiver_id',auth()->id())->where('is_seen',false);
                $not_seen->update(['is_seen'=> true]);
         }
 

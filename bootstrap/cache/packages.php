@@ -45,6 +45,13 @@
       0 => 'Infureal\\Providers\\GuiServiceProvider',
     ),
   ),
+  'joshrainwater/active-users' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rainwater\\Active\\ActiveServiceProvider',
+    ),
+  ),
   'laravel/sail' => 
   array (
     'providers' => 

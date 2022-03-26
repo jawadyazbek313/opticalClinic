@@ -109,4 +109,9 @@ return array (
   'ShowAppointments' => 'إظهار المواعيد',
   'ShowPayments' => 'إظهار المدفوعات',
   'RestoringSuccess' => 'تمت إستعادة الموعد',
+  'add' => 'إضافة',
+  'permission' => 
+  array (
+    'title_singular' => 'إذن',
+  ),
 );

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-
+use Rainwater\Active\Active;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
@@ -27,7 +27,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class);
     }
-
+    public function Active(){
+        return $this->hasOne(Active ::class);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

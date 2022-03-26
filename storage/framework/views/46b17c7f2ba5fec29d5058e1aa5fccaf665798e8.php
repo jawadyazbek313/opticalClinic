@@ -14,7 +14,7 @@
               <div class="col-lg-2 col-md-12"><?php echo e(__('lang.InpAppointmentNotes')); ?></div>
               <div class="col-lg-1 col-md-12"><?php echo e(__('lang.isDone')); ?></div>
               <div class="col-lg-2 col-md-12">الخيارات</div>
-
+            
             </div>
           </div>
 

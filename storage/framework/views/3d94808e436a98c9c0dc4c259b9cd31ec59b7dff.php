@@ -32,15 +32,15 @@
                                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('messages')->html();
-} elseif ($_instance->childHasBeenRendered('NzWHus6')) {
-    $componentId = $_instance->getRenderedChildComponentId('NzWHus6');
-    $componentTag = $_instance->getRenderedChildComponentTagName('NzWHus6');
+} elseif ($_instance->childHasBeenRendered('amxvQpW')) {
+    $componentId = $_instance->getRenderedChildComponentId('amxvQpW');
+    $componentTag = $_instance->getRenderedChildComponentTagName('amxvQpW');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('NzWHus6');
+    $_instance->preserveRenderedChild('amxvQpW');
 } else {
     $response = \Livewire\Livewire::mount('messages');
     $html = $response->html();
-    $_instance->logRenderedChild('NzWHus6', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('amxvQpW', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -381,41 +381,7 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-                        <script>
-                            document.getElementById('inlineRadio1').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "block";
-                                } else
-                                    document.getElementById('Payments').style.display = "none";
-
-
-                            });
-
-                            document.getElementById('inlineRadio2').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "none";
-                                } else
-                                    document.getElementById('Payments').style.display = "block";
-
-
-                            });
-
-                            document.getElementById('payment_type').addEventListener('change', function() {
-                                var x = document.getElementById('payment');
-                                if (this.value != null) x.disabled = false;
-                                if (this.value != 'cash') {
-                                    x.value = "";
-                                    x.type = 'text';
-                                    if (document.getElementById('Currency').style.display == "block") {
-                                        document.getElementById('Currency').style.display = "none";
-                                    }
-                                } else {
-                                    x.value = "";
-                                    x.type = 'number';
-                                    document.getElementById('Currency').style.display = "block";
-                                }
-                            });
-                        </script>
+                        
                     </form>
                 </div>
 
@@ -457,6 +423,41 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
     <script>
+
+document.getElementById('inlineRadio1').addEventListener('change', function() {
+                                if (this.checked == '1') {
+                                    document.getElementById('Payments').style.display = "block";
+                                } else
+                                    document.getElementById('Payments').style.display = "none";
+
+
+                            });
+
+                            document.getElementById('inlineRadio2').addEventListener('change', function() {
+                                if (this.checked == '1') {
+                                    document.getElementById('Payments').style.display = "none";
+                                } else
+                                    document.getElementById('Payments').style.display = "block";
+
+
+                            });
+
+                            document.getElementById('payment_type').addEventListener('change', function() {
+                                var x = document.getElementById('payment');
+                                if (this.value != null) x.disabled = false;
+                                if (this.value != 'cash') {
+                                    x.value = "";
+                                    x.type = 'text';
+                                    if (document.getElementById('Currency').style.display == "block") {
+                                        document.getElementById('Currency').style.display = "none";
+                                    }
+                                } else {
+                                    x.value = "";
+                                    x.type = 'number';
+                                    document.getElementById('Currency').style.display = "block";
+                                }
+                            });
+
         $(".addAjaxAppointment").click(function(event) {
             event.preventDefault();
 
@@ -780,11 +781,7 @@ unset($__errorArgs, $__bag); ?>
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
-    </script>
-
-
-
-    <script>
+   
         $(document).ready(function() {
 
             $(document).on('click', '#ContentHere .pagination a', function(event) {

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminPanel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
@@ -27,7 +30,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 Route::resource('/patient', PatientController::class);
 Route::resource('/appointment', AppointmentController::class);
-Route::resource('/admin', AdminPanel::class);
+
 Route::post('/appointment/{id}/MarkDone', [AppointmentController::class, 'MarkDone'])->name('MarkDone');
 Route::get('/go/fetch_data', [App\Http\Controllers\HomeController::class,'fetch_data'])->name('Fetch_data');
 Route::get('/appointments/trashlist', [App\Http\Controllers\AppointmentController::class,'trashlist'])->name('appointment.trashlist');
@@ -35,3 +38,29 @@ Route::get('/appointment/{id}/restore', [App\Http\Controllers\AppointmentControl
 Route::get('/appointments/trashlistrefresh', [App\Http\Controllers\AppointmentController::class,'trashlistrefresh'])->name('appointment.trashlistrefresh');
 Route::post('/appointment/trash', [App\Http\Controllers\AppointmentController::class,'trash'])->name('appointment.trash');
 Route::view('/chat', 'chats.chat');
+
+// Route::group(, function () {
+
+//     Route::resource('permissions', 'Admin\PermissionsController');
+//     Route::delete('permissions_mass_destroy', 'Admin\PermissionsController@massDestroy')->name('permissions.mass_destroy');
+//     Route::resource('roles', 'Admin\RolesController');
+//     Route::delete('roles_mass_destroy', 'Admin\RolesController@massDestroy')->name('roles.mass_destroy');
+//     Route::resource('users', 'Admin\UsersController');
+//     Route::delete('users_mass_destroy', 'Admin\UsersController@massDestroy')->name('users.mass_destroy');
+// });
+// Route::group([['middleware' => , 'prefix' => 'admin', 'as' => 'admin.']], function () {
+//     Route::resource('permissions', PermissionsController::class);
+//     Route::delete('permissions_mass_destroy', 'Admin\PermissionsController@massDestroy')->name('permissions.mass_destroy');
+//     Route::resource('roles', RolesController::class);
+//     Route::delete('roles_mass_destroy', 'Admin\RolesController@massDestroy')->name('roles.mass_destroy');
+//     Route::resource('users', UsersController::class);
+//     Route::delete('users_mass_destroy', 'Admin\UsersController@massDestroy')->name('users.mass_destroy');
+// });
+Route::middleware(['role:admin'])->prefix('admin')->group( function () {
+    Route::resource('permissions', PermissionsController::class);
+    Route::delete('permissions_mass_destroy', 'Admin\PermissionsController@massDestroy')->name('permissions.mass_destroy');
+    Route::resource('roles', RolesController::class);
+    Route::delete('roles_mass_destroy', 'Admin\RolesController@massDestroy')->name('roles.mass_destroy');
+    Route::resource('users', UsersController::class);
+    Route::delete('users_mass_destroy', 'Admin\UsersController@massDestroy')->name('users.mass_destroy');
+});

@@ -241,10 +241,3 @@ vertical-align: middle;
 
   direction: rtl !important;
 }
-
-.hoverbadges:hover{
-
-  transform: scale(0.9);
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}

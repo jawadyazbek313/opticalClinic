@@ -361,41 +361,7 @@
 
 
 
-                        <script>
-                            document.getElementById('inlineRadio1').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "block";
-                                } else
-                                    document.getElementById('Payments').style.display = "none";
-
-
-                            });
-
-                            document.getElementById('inlineRadio2').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "none";
-                                } else
-                                    document.getElementById('Payments').style.display = "block";
-
-
-                            });
-
-                            document.getElementById('payment_type').addEventListener('change', function() {
-                                var x = document.getElementById('payment');
-                                if (this.value != null) x.disabled = false;
-                                if (this.value != 'cash') {
-                                    x.value = "";
-                                    x.type = 'text';
-                                    if (document.getElementById('Currency').style.display == "block") {
-                                        document.getElementById('Currency').style.display = "none";
-                                    }
-                                } else {
-                                    x.value = "";
-                                    x.type = 'number';
-                                    document.getElementById('Currency').style.display = "block";
-                                }
-                            });
-                        </script>
+                        
                     </form>
                 </div>
 
@@ -437,6 +403,41 @@
         </div>
     </div>
     <script>
+
+document.getElementById('inlineRadio1').addEventListener('change', function() {
+                                if (this.checked == '1') {
+                                    document.getElementById('Payments').style.display = "block";
+                                } else
+                                    document.getElementById('Payments').style.display = "none";
+
+
+                            });
+
+                            document.getElementById('inlineRadio2').addEventListener('change', function() {
+                                if (this.checked == '1') {
+                                    document.getElementById('Payments').style.display = "none";
+                                } else
+                                    document.getElementById('Payments').style.display = "block";
+
+
+                            });
+
+                            document.getElementById('payment_type').addEventListener('change', function() {
+                                var x = document.getElementById('payment');
+                                if (this.value != null) x.disabled = false;
+                                if (this.value != 'cash') {
+                                    x.value = "";
+                                    x.type = 'text';
+                                    if (document.getElementById('Currency').style.display == "block") {
+                                        document.getElementById('Currency').style.display = "none";
+                                    }
+                                } else {
+                                    x.value = "";
+                                    x.type = 'number';
+                                    document.getElementById('Currency').style.display = "block";
+                                }
+                            });
+
         $(".addAjaxAppointment").click(function(event) {
             event.preventDefault();
 
@@ -760,11 +761,7 @@
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
-    </script>
-
-
-
-    <script>
+   
         $(document).ready(function() {
 
             $(document).on('click', '#ContentHere .pagination a', function(event) {

@@ -17,7 +17,6 @@
     <script src="<?php echo e(asset('js/dataTables.bootstrap4.min.js')); ?>" defer></script>
 
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
-
     <script src="<?php echo e(asset('js/bootstrap-select.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/gijgo.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/custom.js')); ?>"></script>

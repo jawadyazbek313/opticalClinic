@@ -7,6 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    
     @livewireStyles
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -137,9 +139,7 @@
 
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('lang.login') }}</a>
-                        </li>
+                        
                         @endif
 
                         @if (Route::has('register'))
@@ -148,18 +148,47 @@
                         </li>
                         @endif
                         @else
+                        @role('admin')
+                        
+                         <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ __('lang.adminPanel') }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                               
+                            <a class="dropdown-item" href="{{ route("permissions.index") }}">
+                                     <i class="fa-fw fas fa-unlock-alt nav-icon">
+
+</i> Permissions
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
+
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                               
+                            </a></li>
+                            
+                       
+                         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                            {{ __('lang.admin') }}
+                           
+                        </div>
+                        
+                        @endrole
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
+                            
                             <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                                @role('admin')
-                                <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                    {{ __('lang.adminPanel') }}
-                                </a>
-                                @endrole
+                               
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('lang.logout') }}

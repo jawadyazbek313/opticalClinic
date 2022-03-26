@@ -109,4 +109,9 @@ return array (
   'ShowAppointments' => 'Show Appointments',
   'ShowPayments' => 'Show Payments',
   'RestoringSuccess' => 'Restoring Success',
+  'add' => 'Add',
+  'permission' => 
+  array (
+    'title_singular' => 'Permission',
+  ),
 );

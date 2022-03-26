@@ -308,7 +308,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\wamp64\\www\\opticalClinic\\storage\\framework/cache/data',
+        'path' => 'D:\\wamp64\\www\\opticalClinic\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -576,12 +576,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\wamp64\\www\\opticalClinic\\storage\\app',
+        'root' => 'D:\\wamp64\\www\\opticalClinic\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\wamp64\\www\\opticalClinic\\storage\\app/public',
+        'root' => 'D:\\wamp64\\www\\opticalClinic\\storage\\app/public',
         'url' => 'http://opticalclinic.loc//storage',
         'visibility' => 'public',
       ),
@@ -599,7 +599,7 @@
     ),
     'links' => 
     array (
-      'C:\\wamp64\\www\\opticalClinic\\public\\storage' => 'C:\\wamp64\\www\\opticalClinic\\storage\\app/public',
+      'D:\\wamp64\\www\\opticalClinic\\public\\storage' => 'D:\\wamp64\\www\\opticalClinic\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -677,9 +677,10 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'C:\\wamp64\\www\\opticalClinic\\resources\\views/livewire',
+    'view_path' => 'D:\\wamp64\\www\\opticalClinic\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => NULL,
+    'app_url' => NULL,
     'middleware_group' => 'web',
     'temporary_file_upload' => 
     array (
@@ -710,6 +711,7 @@
     ),
     'manifest_path' => NULL,
     'back_button_cache' => false,
+    'render_on_redirect' => false,
   ),
   'logging' => 
   array (
@@ -728,13 +730,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
+        'path' => 'D:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
+        'path' => 'D:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -785,7 +787,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
+        'path' => 'D:\\wamp64\\www\\opticalClinic\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -842,7 +844,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\wamp64\\www\\opticalClinic\\resources\\views/vendor/mail',
+        0 => 'D:\\wamp64\\www\\opticalClinic\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -968,11 +970,11 @@
   ),
   'session' => 
   array (
-    'driver' => 'file',
+    'driver' => 'database',
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\wamp64\\www\\opticalClinic\\storage\\framework/sessions',
+    'files' => 'D:\\wamp64\\www\\opticalClinic\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1025,9 +1027,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\wamp64\\www\\opticalClinic\\resources\\views',
+      0 => 'D:\\wamp64\\www\\opticalClinic\\resources\\views',
     ),
-    'compiled' => 'C:\\wamp64\\www\\opticalClinic\\storage\\framework\\views',
+    'compiled' => 'D:\\wamp64\\www\\opticalClinic\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -1085,6 +1087,7 @@
         'use_bom' => false,
         'include_separator_line' => false,
         'excel_compatibility' => false,
+        'output_encoding' => '',
       ),
       'properties' => 
       array (
@@ -1166,10 +1169,14 @@
     'transactions' => 
     array (
       'handler' => 'db',
+      'db' => 
+      array (
+        'connection' => NULL,
+      ),
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\wamp64\\www\\opticalClinic\\storage\\framework/laravel-excel',
+      'local_path' => 'D:\\wamp64\\www\\opticalClinic\\storage\\framework/cache/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,
