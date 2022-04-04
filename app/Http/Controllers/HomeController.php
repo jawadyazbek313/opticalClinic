@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -26,7 +28,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         // return User::role('admin')->get();
         // Role::create(["name"=>'secretary']);
         // Permission::create(['name'=>'add patient']);
@@ -43,51 +45,59 @@ class HomeController extends Controller
         //     $permission=Permission::findById($i);
         //     $role->givePermissionTo($permission);
         // }
-  
-        $appointments=Appointment::select('id','date','time','isDone','notes')
-                                ->where('date', '=', date('Y-m-d'))
-                                ->where('trashed',0)
-                                ->orderBy('isDone','ASC')
-                                ->orderBy('date','ASC')
-                                ->orderBy('time','ASC')
-                                ->with('patient:id,firstname,midname,lastname')
-                                ->with('payment')
-                                ->paginate(7);
-        $countme=Appointment::select('id','date','isDone','notes')
-                                ->where('trashed',0)
-                                ->where('date', '=', date('Y-m-d'))->count();
+
+        $appointments = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
+            ->where('date', '=', date('Y-m-d'))
+            ->where('trashed', 0)
+            ->orderBy('isDone', 'ASC')
+            ->orderBy('date', 'ASC')
+            ->orderBy('time', 'ASC')
+            ->with('patient:id,firstname,midname,lastname')
+            ->with('payment')
+            ->paginate(7);
+        $countme = Appointment::select('id', 'date', 'isDone', 'notes')
+            ->where('trashed', 0)
+            ->where('date', '=', date('Y-m-d'))->count();
         $patients = Patient::select('id', 'firstname', 'midname', 'lastname', 'dob')->get();
-        return view('home',compact('appointments','countme','patients'));
+
+        $appointmentsTomorrow = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
+            ->where('date', '=', Carbon::tomorrow()->toDateString())->orderBy('isDone', 'ASC')
+            ->orderBy('date', 'ASC')
+            ->orderBy('time', 'ASC')
+            ->with('patient:id,firstname,midname,lastname')
+            ->with('payment')
+            ->paginate(7);
+            $countmeappointmentsTomorrow = Appointment::select('id', 'date', 'isDone', 'notes')
+            ->where('trashed', 0)
+            ->where('date', '=', Carbon::tomorrow()->toDateString())->count();
+         
+        return view('home', compact('appointments', 'countme', 'patients','appointmentsTomorrow','countmeappointmentsTomorrow'));
     }
 
     function fetch_data(Request $request)
     {
-     if($request->ajax())
-     {
-        $appointments=Appointment::select('id','date','time','isDone','notes')
-                                ->where('date', '=', date('Y-m-d'))
-                                ->where('trashed',0)
-                                ->orderBy('isDone','ASC')
-                                ->orderBy('date','ASC')
-                                ->orderBy('time','ASC')
-                                ->orderBy('updated_at','DESC')
-                                ->with('patient:id,firstname,midname,lastname')
-                                ->with('payment')
-                                ->paginate(7);
+        if ($request->ajax()) {
+            $appointments = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
+                ->where('date', '=', date('Y-m-d'))
+                ->where('trashed', 0)
+                ->orderBy('isDone', 'ASC')
+                ->orderBy('date', 'ASC')
+                ->orderBy('time', 'ASC')
+                ->orderBy('updated_at', 'DESC')
+                ->with('patient:id,firstname,midname,lastname')
+                ->with('payment')
+                ->paginate(7);
 
 
-        $countme=Appointment::select('id','date','time','isDone','notes')
-                                ->where('date', '=', date('Y-m-d'))
-                                ->where('trashed',0)
-                                ->orderBy('date','ASC')
-                                ->orderBy('time','ASC')
-                                ->count();
+            $countme = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
+                ->where('date', '=', date('Y-m-d'))
+                ->where('trashed', 0)
+                ->orderBy('date', 'ASC')
+                ->orderBy('time', 'ASC')
+                ->count();
 
 
-      return view('dailyAppointment', compact('appointments','countme'))->render();
-     }
+            return view('dailyAppointment', compact('appointments', 'countme'))->render();
+        }
     }
 }
-
-
-

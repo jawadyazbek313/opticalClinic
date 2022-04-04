@@ -1,5 +1,23 @@
 <div>
-    <div class="container-fluid p-0" style="direction: ltr !important">
+    @php
+        $not_seen_all =
+            App\Models\Message::where('receiver_id', auth()->id())
+                ->where('is_seen', false)
+                ->get() ?? null;
+        
+    @endphp
+    <button role="button" style="position: fixed; bottom: 175px;right: 25px;Z-INDEX: 99;" type="button"
+        class=" btn btn-primary" 
+        class="btn btn-primary btn-circle btn-md ltr"
+        wire:click="changeVisibility()"
+        >
+        <i class="fa fa-comments fa-2x"></i>
+        @if (filled($not_seen_all))
+            <span class="badge badge-danger">{{ $not_seen_all->count() }}</span>
+        @endif
+    </button>
+
+    <div wire:change="changeVisibility()" style="position: fixed; bottom: 20px;right: 125px;Z-INDEX: 99;width:50%; @if($is_set_visible!=true) visibility: hidden;  @endif" class="bottom-4 right-4 p-0 z-20" style="direction: ltr !important">
         <div class="row justify-content-center p-0">
 
             <div class="col-md-4 col-sm-3 p-0">
@@ -21,8 +39,10 @@
                                         
                                     @endphp
                                     <a wire:click="getUser({{ $user->id }})" class="text-dark link">
-                                        <li class="pointerme list-group-item list-group-item-action border-0 text-left">
-                                            <img class="img-fluid avatar" src="{{ asset('images/profile.webp') }}">
+                                        <li
+                                            class="pointerme list-group-item list-group-item-action border-0 text-left">
+                                            <img class="img-fluid avatar"
+                                                src="{{ asset('images/profile.webp') }}">
                                             @if ($user->active != null)
                                                 @if ($user->active->last_activity > strtotime(now()->subSecond(30)))
                                                     <i class="fa fa-circle text-success online-icon">
@@ -31,7 +51,8 @@
 
                                             </i> {{ $user->name }}
                                             @if (filled($not_seen))
-                                                <div class="badge badge-success rounded"> {{ $not_seen->count() }}
+                                                <div class="badge badge-success rounded">
+                                                    {{ $not_seen->count() }}
                                                 </div>
                                             @endif
                                         </li>
@@ -62,10 +83,13 @@
                                     @endif
                                     @if ($mgs->user_id == auth()->id())
                                         @if ($mgs->is_seen == false)
-                                            <small><span class="border-top"> {{ $mgs->updated_at }} <i
+                                            <small><span class="border-top">
+                                                    {{ $mgs->updated_at }} <i
                                                         class="ml-2 far fa-check-circle"></i></span></small>
                                             @endif @if ($mgs->is_seen == true)
-                                                <small><span class="border-top">{{ $mgs->updated_at }} <i
+                                                <small><span
+                                                        class="border-top">{{ $mgs->updated_at }}
+                                                        <i
                                                             class="ml-2 fas fa-check-circle"></i></span></small>
                                             @endif
                                         @endif
@@ -85,7 +109,8 @@
                                 </div>
 
                                 <div class="col-md-4 marginTopResponsive">
-                                    <button type="submit" class="btn btn-primary d-inline-block w-100"><i
+                                    <button type="submit"
+                                        class="btn btn-primary d-inline-block w-100"><i
                                             class="far fa-paper-plane"></i> Send</button>
                                 </div>
                             </div>
@@ -96,4 +121,6 @@
             </div>
         </div>
     </div>
+
 </div>
+

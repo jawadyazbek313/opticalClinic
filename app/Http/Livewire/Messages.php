@@ -4,18 +4,22 @@ namespace App\Http\Livewire;
 use App\Models\Message;
 use Livewire\Component;
 use App\Models\User;
-use Rainwater\Active\Active;
 class Messages extends Component
 {
 	public $message;
 	public $allmessages;
 	public $sender;
+	public $is_set_visible=false;
     public function render()
     {
     	$users=User::with('active')->get();
     	$sender=$this->sender;
     	$this->allmessages;
         return view('livewire.messages',compact('users','sender'));
+    }
+    
+    public function changeVisibility(){
+        $this->is_set_visible=!$this->is_set_visible;
     }
     public function mountdata()
     {

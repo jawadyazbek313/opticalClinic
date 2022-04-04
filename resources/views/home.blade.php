@@ -24,18 +24,18 @@
 
                         </div>
 
-                        <div class="col-lg-6 col-md-12 marginTopResponsive @if (App::getLocale() == 'ar') rtlME @endif">
+                        {{-- <div class="col-lg-6 col-md-12 marginTopResponsive @if (App::getLocale() == 'ar') rtlME @endif">
                             <div class="card border-top-primary shadow h-100 py-2 ">
                                 <div class="card-header bg-transparent">
                                     <h3>Live Chat</h3>
                                 </div>
                                 <div class="card-body">
 
-                                    @livewire('messages')
+                                    
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -50,12 +50,10 @@
                             </div>
                         </div>
                         <div class="col-lg-6 marginTopResponsive">
-                            <div class="card border-top-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h3>{{ __('lang.tomorrowAppointment') }}</h3>
-                                    <hr>
-                                </div>
-                            </div>
+                          
+                                  
+                                    @include('TomorrowAppointment')
+                             
                         </div>
                     </div>
                 </div>

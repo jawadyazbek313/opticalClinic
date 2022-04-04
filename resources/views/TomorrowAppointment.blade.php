@@ -13,79 +13,75 @@
 </script>
 <div class="card border-top-primary shadow h-100">
     <div class="card-body">
-        <h3><?php echo e(__('lang.todayAppointment')); ?> : <?php echo e($countme); ?></h3>
+        <h3>{{ __('lang.tomorrowAppointment') }} : {{ $countmeappointmentsTomorrow }}</h3>
         <hr class="mb-0">
 
 
         <ul style="padding-right:0" class="list-group list-group-flush border border-0">
-            <?php if(!$appointments->isEmpty()): ?>
+            @if (!$appointmentsTomorrow->isEmpty())
 
-                <?php $__currentLoopData = $appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach ($appointmentsTomorrow as $appointment)
                     <li class="list-group-item">
                         <div class="row justify-content-center">
                             <div style="display: table; overflow: hidden;" class="col-lg-1 col-md-4 col-sm-4">
                                 <div style="display: table-cell; vertical-align: middle;">
                                     <a class="btn btn-outline-success btn-block"
-                                        href="<?php echo e(route('appointment.edit', $appointment->id)); ?>"><i
+                                        href="{{ route('appointment.edit', $appointment->id) }}"><i
                                             class="fa fa-edit"></i></a>
                                 </div>
                             </div>
                             <div style="display: table; overflow: hidden;"
                                 class="col-lg-4 col-md-4 col-sm-4 marginTopResponsive">
                                 <div style="display: table-cell; vertical-align: middle;">
-                                    <h5> <a href="patient/<?php echo e($appointment->patient[0]->id); ?> ">
-                                            <?php echo e($appointment->patient[0]->firstname . ' ' . $appointment->patient[0]->midname . ' ' . $appointment->patient[0]->lastname); ?>
-
+                                    <h5> <a href="patient/{{ $appointment->patient[0]->id }} ">
+                                            {{ $appointment->patient[0]->firstname . ' ' . $appointment->patient[0]->midname . ' ' . $appointment->patient[0]->lastname }}
                                         </a></h5>
                                 </div>
                             </div>
                             <div style="display: table; overflow: hidden;" class="col-lg-2 col-md-4 col-sm-4">
                                 <div style="display: table-cell; vertical-align: middle;">
-                                    <h4><?php echo e($appointment->time); ?></h4>
+                                    <h4>{{ $appointment->time }}</h4>
                                 </div>
                             </div>
 
 
                             <div style="display: table; overflow: hidden;" class="col-lg-4 col-md-12">
                                 <div style="display: table-cell; vertical-align: middle;">
-                                    <?php if($appointment->isDone == 1): ?>
-                                        <div data-toggle="tooltip" data-placement="bottom" data-html="true" title='<div  class="row "><div class="col"><h4>Paid: <small><?php echo e($appointment->payment[0]->payment_type); ?></small></h4></div></div> <div class="row"><div class="col"><h5><?php echo e($appointment->payment[0]->payment); ?> 
-                        <?php if($appointment->payment[0]->payment_type == ' cash'): ?>
-                                            <?php echo e($appointment->payment[0]->payment_currency == 'us' ? '<small>$$</small>' : '<small>L.L.</small>'); ?>
-
-                                    <?php endif; ?>
+                                    @if ($appointment->isDone == 1)
+                                        <div data-toggle="tooltip" data-placement="bottom" data-html="true" title='<div  class="row "><div class="col"><h4>Paid: <small>{{ $appointment->payment[0]->payment_type }}</small></h4></div></div> <div class="row"><div class="col"><h5>{{ $appointment->payment[0]->payment }} 
+                        @if ($appointment->payment[0]->payment_type == ' cash')
+                                            {{ $appointment->payment[0]->payment_currency == 'us' ? '<small>$$</small>' : '<small>L.L.</small>' }}
+                                    @endif
                                     </h5> <br>
-                                    <?php echo e($appointment->payment[0]->created_at); ?>
-
+                                    {{ $appointment->payment[0]->created_at }}
                                 </div>
                             </div>'
                             class="marginTopResponsive card text-white bg-success text-center justify-content-center mb-0 my-0">Done
                             <div>
-                            <?php else: ?>
+                            @else
 
 
-                                <div class="text-center btn-group btn-block marginTopResponsive "
+                                <div class="text-center btn-group btn-block marginTopResponsive {{-- @if (app()->getlocale() == 'ar') float-left @else float-right @endif --}}"
                                     style="direction: ltr !important">
                                     <button id="ChangeAfterSuccess"
-                                        data-patient_id="<?php echo e($appointment->patient[0]->id); ?>"
-                                        data-appointment_id="<?php echo e($appointment->id); ?>"
+                                        data-patient_id="{{ $appointment->patient[0]->id }}"
+                                        data-appointment_id="{{ $appointment->id }}"
                                         class="OpenModal  btn btn-outline-primary text-center justify-content-center mb-0 my-0 success-change"
                                         type="button"><i class="fas fa-check"></i>
-                                        <?php echo e(__('lang.MarkDone')); ?></button>
-                                    <button data-appointmentid="<?php echo e($appointment->id); ?>" type="button"
+                                        {{ __('lang.MarkDone') }}</button>
+                                    <button data-appointmentid="{{ $appointment->id }}" type="button"
                                         class="btn btnAbort  btn-outline-danger text-center justify-content-center mb-0 my-0"><i
-                                            class="fas fa-times"></i> <?php echo e(__('lang.Abort')); ?></button>
+                                            class="fas fa-times"></i> {{ __('lang.Abort') }}</button>
                                 </div>
 
-                <?php endif; ?>
+                @endif
     </div>
 </div>
 </li>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<?php else: ?>
+@endforeach
+@else
 <h3>No Appointments Today For Now!</h3>
-<?php endif; ?>
+@endif
 </div>
-<div class="row justify-content-center"><?php echo e($appointments->links()); ?></div>
+<div class="row justify-content-center">{{ $appointmentsTomorrow->links() }}</div>
 </ul>
-<?php /**PATH C:\wamp64\www\opticalClinic\resources\views/dailyAppointment.blade.php ENDPATH**/ ?>

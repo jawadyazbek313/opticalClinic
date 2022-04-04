@@ -55,11 +55,8 @@ class PatientController extends Controller
         if(!($request->ajax())){
         $request->validate([
             'firstname'=>'required|max:15|min:3',
-            'midname'=>'required|max:15|min:3',
             'lastname'=>'required|max:15|min:3',
-            'insurancetype'=>'required',
-            'bloodtype'=>'required',
-            'gender'=>'required',
+            
         ]);
 
         
@@ -130,12 +127,8 @@ class PatientController extends Controller
     else{
         $validator = Validator::make($request->all(), [
             'firstname'=>'required|max:15|min:3',
-            'midname'=>'required|max:15|min:3',
             'lastname'=>'required|max:15|min:3',
-            'insurancetype'=>'required',
-            'bloodtype'=>'required',
-            'gender'=>'required',
-            'dob'=>'required',
+           
 
         ]);
 

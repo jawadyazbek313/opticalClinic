@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    
+
     @livewireStyles
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -37,170 +37,176 @@
     <!-- Styles -->
     <style>
         body::after {
-  content: "";
-  background: url({{ asset('images/bg.png') }});
-    opacity: 0.05;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    z-index: -1;
-    }
+            content: "";
+            background: url({{ asset('images/bg.png') }});
+            opacity: 0.05;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: fixed;
+            z-index: -1;
+        }
+
     </style>
 
     <style>
-    .nav-item:hover .dropdown-menu{
-        display: block;
-    }
-    .dropdown-menu{
-        margin-top: 0;
-    }
-</style>
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            margin-top: 0;
+        }
+
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        <nav @if (app()->getLocale()=='ar') style="direction:rtl !important" @endif class=" navbar
-            navbar-expand-lg navbar-light bg-white shadow-sm sticky-top " data-nav-status="toggle">
+    <div id="app" class="relative">
+        <nav @if (app()->getLocale() == 'ar') style="direction:rtl !important" @endif
+            class=" navbar
+            navbar-expand-lg navbar-light bg-white shadow-sm sticky-top "
+            data-nav-status="toggle">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img style="transition: all 0.5s ease-in-out;" class="hoverbadges" src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
+                    <img style="transition: all 0.5s ease-in-out;" class="hoverbadges"
+                        src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     @if (Auth::user())
-                    <ul class="navbar-nav @if (app()->getLocale()=='ar')  ml-auto  @else mr-auto @endif">
+                        <ul class="navbar-nav @if (app()->getLocale() == 'ar') ml-auto  @else mr-auto @endif">
 
 
-                        <li
-                            class="nav-item dropdown {{ (request()->is('patient/create')) ? 'active' : '' }}{{ (request()->is('patient')) ? 'active' : '' }}{{ (request()->is('member/create')) ? 'active' : '' }}">
-                            <a type="button" id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{__('lang.MenuItemPatients')}}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center {{ (request()->is('patient')) ? 'active' : '' }}"
-                                    href="{{ route('patient.index') }}">
-                                    {{__('lang.listPatient')}}
-                                </a> <a
-                                    class="dropdown-item text-center {{ (request()->is('patient/create')) ? 'active' : '' }}"
-                                    href="{{ route('patient.create') }}">
-                                    {{__('lang.addPatient')}}
+                            <li
+                                class="nav-item dropdown {{ request()->is('patient/create') ? 'active' : '' }}{{ request()->is('patient') ? 'active' : '' }}{{ request()->is('member/create') ? 'active' : '' }}">
+                                <a type="button" id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('lang.MenuItemPatients') }}
                                 </a>
 
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-center {{ request()->is('patient') ? 'active' : '' }}"
+                                        href="{{ route('patient.index') }}">
+                                        {{ __('lang.listPatient') }}
+                                    </a> <a
+                                        class="dropdown-item text-center {{ request()->is('patient/create') ? 'active' : '' }}"
+                                        href="{{ route('patient.create') }}">
+                                        {{ __('lang.addPatient') }}
+                                    </a>
 
 
-                            </div>
+
+                                </div>
 
 
-                        </li>
+                            </li>
 
 
 
-                        <li
-                            class="nav-item dropdown {{ (request()->is('appointment')) ? 'active' : '' }} {{ (request()->is('appointments/trashlist')) ? 'active' : '' }} {{ (request()->is('appointment/create')) ? 'active' : '' }}">
-                            <a type="button" id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{__('lang.listAppointment')}}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center {{ (request()->is('appointment')) ? 'active' : '' }}"
-                                    href="{{ route('appointment.index') }}">
-                                    {{__('lang.listAppointment')}}
-                                </a> <a
-                                    class="dropdown-item text-center {{ (request()->is('appointment/create')) ? 'active' : '' }}"
-                                    href="{{ route('appointment.create') }}">
-                                    {{__('lang.addAppointment')}}
+                            <li
+                                class="nav-item dropdown {{ request()->is('appointment') ? 'active' : '' }} {{ request()->is('appointments/trashlist') ? 'active' : '' }} {{ request()->is('appointment/create') ? 'active' : '' }}">
+                                <a type="button" id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('lang.listAppointment') }}
                                 </a>
-                                <a
-                                    class="dropdown-item text-center {{ (request()->is('appointments/trashlist')) ? 'active' : '' }}"
-                                    href="{{ route('appointment.trashlist') }}">
-                                    {{__('lang.DeletedAppointment')}}
-                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-center {{ request()->is('appointment') ? 'active' : '' }}"
+                                        href="{{ route('appointment.index') }}">
+                                        {{ __('lang.listAppointment') }}
+                                    </a> <a
+                                        class="dropdown-item text-center {{ request()->is('appointment/create') ? 'active' : '' }}"
+                                        href="{{ route('appointment.create') }}">
+                                        {{ __('lang.addAppointment') }}
+                                    </a>
+                                    <a class="dropdown-item text-center {{ request()->is('appointments/trashlist') ? 'active' : '' }}"
+                                        href="{{ route('appointment.trashlist') }}">
+                                        {{ __('lang.DeletedAppointment') }}
+                                    </a>
 
 
 
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     @endif
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav @if (app()->getLocale()=='ar')  mr-auto  @else ml-auto @endif ">
+                    <ul class="navbar-nav @if (app()->getLocale() == 'ar') mr-auto  @else ml-auto @endif ">
                         <!-- Authentication Links -->
 
                         @guest
-                        @if (Route::has('login'))
-                        
-                        @endif
+                            @if (Route::has('login'))
+                            @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('lang.register') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('register') }}">{{ __('lang.register') }}</a>
+                                </li>
+                            @endif
                         @else
-                        @role('admin')
-                        
-                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ __('lang.adminPanel') }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                               
-                            <a class="dropdown-item" href="{{ route("permissions.index") }}">
-                                     <i class="fa-fw fas fa-unlock-alt nav-icon">
+                            @role('admin')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('lang.adminPanel') }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
 
-</i> Permissions
-                            </a>
+                                        <a class="dropdown-item" href="{{ route('permissions.index') }}">
+                                            <i class="fa-fw fas fa-unlock-alt nav-icon">
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                            </i> Permissions
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
 
 
-                        </div>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                               
-                            </a></li>
-                            
-                       
-                         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                            {{ __('lang.admin') }}
-                           
-                        </div>
-                        
-                        @endrole
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-                            
-                            <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                               
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('lang.logout') }}
+                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+
+                                    </a>
+                                </li>
+
+
+                                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                                    {{ __('lang.admin') }}
+
+                                </div>
+                            @endrole
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                        {{ __('lang.logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
 
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
 
                         @endguest
                         <li class="nav-item dropdown">
@@ -211,9 +217,10 @@
                             <div class="dropdown-menu text-center dropdown-menu-right"
                                 aria-labelledby="navbarDropdownMenuLink">
                                 @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{__($language)}}</a>
-                                @endif
+                                    @if ($lang != App::getLocale())
+                                        <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">
+                                            {{ __($language) }}</a>
+                                    @endif
                                 @endforeach
                             </div>
                         </li>
@@ -222,16 +229,16 @@
                 </div>
             </div>
         </nav>
+        @livewire('messages')
 
-        <main class="py-4">
+        <main class="py-4 ">
             @yield('content')
         </main>
-    </div>
-    <script>
-        $.fn.selectpicker.Constructor.BootstrapVersion = '4';
-    </script>
-    @livewireScripts
-  
+        <script>
+            $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+        </script>
+        @livewireScripts
+
 </body>
 
 </html>
