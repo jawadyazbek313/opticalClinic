@@ -17,7 +17,7 @@
         @endif
     </button>
 
-    <div wire:change="changeVisibility()" style="position: fixed; bottom: 20px;right: 125px;Z-INDEX: 99;width:50%; @if($is_set_visible!=true) visibility: hidden;  @endif" class="bottom-4 right-4 p-0 z-20" style="direction: ltr !important">
+    <div style="position: fixed; bottom: 20px;right: 125px;Z-INDEX: 99;width:50%; @if($is_set_visible!=true) visibility: hidden;  @endif" class="bottom-4 right-4 p-0 z-20" style="direction: ltr !important">
         <div class="row justify-content-center p-0">
 
             <div class="col-md-4 col-sm-3 p-0">
