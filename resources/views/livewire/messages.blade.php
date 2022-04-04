@@ -6,6 +6,7 @@
                 ->get() ?? null;
         
     @endphp
+  
     <button role="button" style="position: fixed; bottom: 175px;right: 25px;Z-INDEX: 99;" type="button"
         class=" btn btn-primary" 
         class="btn btn-primary btn-circle btn-md ltr"
@@ -59,12 +60,18 @@
                                     </a>
                                 @endif
                             @endforeach
+
+
+                           
+                          
+                          
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-8 col-sm-9 p-0 max-h-min">
+                
                 <div class="card h-full">
                     <div class="card-header bg-light">
                         @if (isset($sender))
@@ -72,6 +79,9 @@
                         @endif
                     </div>
                     <div class="card-body message-box" wire:poll="mountdata">
+                         @if (isset($sender))
+                        
+                        
                         @if (filled($allmessages))
                             @foreach ($allmessages as $mgs)
                                 <div data-msg-id=""
@@ -95,6 +105,7 @@
                                         @endif
                                 </div>
                             @endforeach
+                        @endif
                         @endif
 
                     </div>

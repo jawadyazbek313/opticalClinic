@@ -20,6 +20,10 @@ class Messages extends Component
     
     public function changeVisibility(){
         $this->is_set_visible=!$this->is_set_visible;
+        if($this->is_set_visible==false)
+        {
+            $this->sender=null;
+        }
     }
     public function mountdata()
     {
