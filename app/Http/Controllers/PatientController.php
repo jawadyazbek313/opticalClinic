@@ -174,7 +174,8 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient=Patient::find($id);
-        return view('patient.show',compact('patient'));
+        $patientPayments=Patient::where('id',$id)->with('payment')->get();
+        return view('patient.show',compact('patient','patientPayments'));
     }
 
     /**

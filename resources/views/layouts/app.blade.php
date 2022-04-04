@@ -229,7 +229,10 @@
                 </div>
             </div>
         </nav>
-        @livewire('messages')
+        @auth
+        
+            @livewire('messages')
+            @endauth
 
         <main class="py-4 ">
             @yield('content')

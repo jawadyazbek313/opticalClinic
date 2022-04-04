@@ -73,4 +73,8 @@ class Patient extends Model
      function appointment() {
         return $this->belongsTo(Appointment::class);
      }
+
+     function payment(){
+        return $this->belongsToMany(Payment::class);
+     }
 }

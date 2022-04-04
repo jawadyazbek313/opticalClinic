@@ -7,18 +7,18 @@
         
     @endphp
   
-    <button role="button" style="position: fixed; bottom: 175px;right: 25px;Z-INDEX: 99;" type="button"
+    <button role="button" style="position: fixed; bottom: 175px;right: 25px;Z-INDEX: 1200;" type="button"
         class=" btn btn-primary" 
         class="btn btn-primary btn-circle btn-md ltr"
         wire:click="changeVisibility()"
         >
         <i class="fa fa-comments fa-2x"></i>
         @if (filled($not_seen_all))
-            <span class="badge badge-danger">{{ $not_seen_all->count() }}</span>
+            <span class="badge badge-danger pulseAnimation badge">{{ $not_seen_all->count() }}</span>
         @endif
     </button>
 
-    <div style="position: fixed; bottom: 20px;right: 125px;Z-INDEX: 99;width:50%; @if($is_set_visible!=true) visibility: hidden;  @endif" class="bottom-4 right-4 p-0 z-20" style="direction: ltr !important">
+    <div style="position: fixed; bottom: 20px;right: 125px;Z-INDEX: 1200;width:50%; @if($is_set_visible!=true) visibility: hidden;  @endif" class="bottom-4 right-4 p-0 z-20" style="direction: ltr !important">
         <div class="row justify-content-center p-0">
 
             <div class="col-md-4 col-sm-3 p-0">
