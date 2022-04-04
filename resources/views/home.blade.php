@@ -15,7 +15,7 @@
                         <div @if (app()->getlocale() == 'ar')
                             style="direction:rtl"
                             @endif class="row">
-                            <div id="ContentHere" class="col-lg-6 col-md-12 @if (App::getLocale() == 'ar') rtlME @endif">
+                            <div id="ContentHere" class="col-lg-12 col-md-12 @if (App::getLocale() == 'ar') rtlME @endif">
 
                                 @include('dailyAppointment')
 

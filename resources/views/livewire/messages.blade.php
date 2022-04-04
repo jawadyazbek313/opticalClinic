@@ -64,8 +64,8 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-sm-9 p-0">
-                <div class="card">
+            <div class="col-md-8 col-sm-9 p-0 max-h-min">
+                <div class="card h-full">
                     <div class="card-header bg-light">
                         @if (isset($sender))
                             {{ $sender->name }}
