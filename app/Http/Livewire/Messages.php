@@ -42,7 +42,8 @@ class Messages extends Component
     }
 
     public function SendMessage()
-    {
+    {   
+        if($this->sender!=null){
     	$data=new Message;
     	$data->message=$this->message;
     	$data->user_id=auth()->id();
@@ -50,7 +51,7 @@ class Messages extends Component
     	$data->save();
 
     	$this->resetForm();
-
+        }
 
     }
     public function getUser($userId)
