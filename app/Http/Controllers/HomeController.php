@@ -46,7 +46,7 @@ class HomeController extends Controller
         //     $role->givePermissionTo($permission);
         // }
 
-        $appointments = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
+        $appointmentsForToday = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
             ->where('date', '=', date('Y-m-d'))
             ->where('trashed', 0)
             ->orderBy('isDone', 'ASC')
@@ -69,16 +69,16 @@ class HomeController extends Controller
             ->paginate(7);
             $countmeappointmentsTomorrow = Appointment::select('id', 'date', 'isDone', 'notes')
             ->where('trashed', 0)
-            ->where('date', '=', Carbon::tomorrow()->toDateString())->count();
+            ->where('date', '>', Carbon::tomorrow()->toDateString())->count();
          
-        return view('home', compact('appointments', 'countme', 'patients','appointmentsTomorrow','countmeappointmentsTomorrow'));
+        return view('home', compact('appointmentsTomorrow', 'countme', 'patients','appointmentsForToday','countmeappointmentsTomorrow'));
     }
 
     function fetch_data(Request $request)
     {
         if ($request->ajax()) {
             $appointments = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
-                ->where('date', '=', date('Y-m-d'))
+                ->where('date', ($request->AppointmentsOf=='today'?'=':'>'), date('Y-m-d'))
                 ->where('trashed', 0)
                 ->orderBy('isDone', 'ASC')
                 ->orderBy('date', 'ASC')
@@ -90,14 +90,15 @@ class HomeController extends Controller
 
 
             $countme = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
-                ->where('date', '=', date('Y-m-d'))
+                ->where('date', ($request->AppointmentsOf=='today'?'=':'>'), date('Y-m-d'))
                 ->where('trashed', 0)
                 ->orderBy('date', 'ASC')
                 ->orderBy('time', 'ASC')
                 ->count();
 
-
-            return view('dailyAppointment', compact('appointments', 'countme'))->render();
+            $AppointmentsFor='tomorrow';
+            return view('AppointmentsForHomePage', compact('appointments', 'countme','AppointmentsFor'))->render();
         }
     }
+
 }

@@ -14,13 +14,10 @@ class CreateAppointmentPatientTable extends Migration
     public function up()
     {
         Schema::create('appointment_patient', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->integer('appointment_id');
-            $table->integer('patient_id');
-            
-            $table->foreign('patient_id', 'appointment_patient_ibfk_1')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('appointment_id', 'appointment_patient_ibfk_2')->references('id')->on('appointments')->onDelete('cascade')->onUpdate('cascade');
-        });
+            $table->id();
+            $table->integer('appointment_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('patient_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+                    });
     }
 
     /**

@@ -14,13 +14,10 @@ class CreatePatientPaymentTable extends Migration
     public function up()
     {
         Schema::create('patient_payment', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->integer('patient_id');
-            $table->integer('payment_id');
-            
-            $table->foreign('patient_id', 'patient_payment_ibfk_1')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('payment_id', 'patient_payment_ibfk_2')->references('id')->on('payments')->onDelete('cascade')->onUpdate('cascade');
-        });
+            $table->id();
+            $table->integer('patient_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('payment_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            });
     }
 
     /**

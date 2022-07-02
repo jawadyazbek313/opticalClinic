@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\PatientDataTable;
+use App\Models\Appointment;
+use App\Models\Appointment_Patient;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Support\Facades\Validator;
 
 class PatientController extends Controller
@@ -148,6 +152,19 @@ class PatientController extends Controller
         $patient->number=$data['number'];
         $patient->maincomplaint=$data['maincomplaint'];
         if($patient->save()){
+            if(isset($data['withAppointment']))
+            {
+               
+            $appointment = new Appointment();
+            $appointment->date = Carbon::now()->format('Y-m-d');
+            $appointment->save();
+            
+            //saving appointment end
+            $Appointment_Patient = new Appointment_Patient();
+            $Appointment_Patient->appointment_id = $appointment->id;
+            $Appointment_Patient->patient_id = $patient->id;
+            $Appointment_Patient->save();
+            }
             return response()->json(['success'=>'Added new Patient.']);
         }
         else{

@@ -47,7 +47,6 @@
             position: fixed;
             z-index: -1;
         }
-
     </style>
 
     <style>
@@ -58,7 +57,6 @@
         .dropdown-menu {
             margin-top: 0;
         }
-
     </style>
 </head>
 
@@ -73,8 +71,8 @@
                     <img style="transition: all 0.5s ease-in-out;" class="hoverbadges"
                         src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -148,8 +146,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('register') }}">{{ __('lang.register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('lang.register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -166,9 +163,18 @@
 
                                             </i> Permissions
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                            <i class="fa-fw fas fa-unlock-alt nav-icon">
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                            </i> Roles
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('users.index') }}">
+                                            <i class="fa-fw fas fa-unlock-alt nav-icon">
+
+                                            </i> Users
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
 
@@ -192,9 +198,11 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right text-center"
+                                    aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                                         {{ __('lang.logout') }}
                                     </a>
@@ -230,17 +238,18 @@
             </div>
         </nav>
         @auth
-        
+
             @livewire('messages')
-            @endauth
+        @endauth
 
         <main class="py-4 ">
             @yield('content')
         </main>
-        <script>
-            $.fn.selectpicker.Constructor.BootstrapVersion = '4';
-        </script>
-        @livewireScripts
+    </div>
+    <script>
+        $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+    </script>
+    @livewireScripts
 
 </body>
 

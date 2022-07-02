@@ -1,64 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card border-top-primary shadow h-100">
 
-
-        <div class="row justify-content-center py text-center">
-            <div class="col-md-12">
-
-
-
-
-                <div class="row justify-content-center">
-                    <div class="col-12 ">
-                        <div @if (app()->getlocale() == 'ar')
-                            style="direction:rtl"
-                            @endif class="row">
-                            <div id="ContentHere" class="col-lg-12 col-md-12 @if (App::getLocale() == 'ar') rtlME @endif">
-
-                                @include('dailyAppointment')
-
-
-                            </div>
-
-                        </div>
-
-                        {{-- <div class="col-lg-6 col-md-12 marginTopResponsive @if (App::getLocale() == 'ar') rtlME @endif">
-                            <div class="card border-top-primary shadow h-100 py-2 ">
-                                <div class="card-header bg-transparent">
-                                    <h3>Live Chat</h3>
-                                </div>
-                                <div class="card-body">
-
-                                    
-
-                                </div>
-                            </div>
-                        </div> --}}
-
-
+                    <div class="card-body">
+                        <span class="h2  ">{{ __('lang.listPatient') }}</span>
+                        <hr class="mb-0">
+                        <div class="d-flex flex-row justify-content-center align-items-center" id="hello-react"></div>
                     </div>
-                    <br>
-                    <div class="row marginTopResponsive">
-                        <div class="col-lg-6 ">
-                            <div class="card border-top-primary shadow h-100 py-2 ">
-                                <div class="card-body">
-                                    <h3>{{ __('lang.nextWeekAppointment') }}</h3>
-                                    <hr>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 marginTopResponsive">
-                          
-                                  
-                                    @include('TomorrowAppointment')
-                             
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
+            <div class="col">
 
+                <div class="col">
+                    <div id="AppointmentsForToday" class=" @if (App::getLocale() == 'ar') rtlME @endif">
+                        @include('AppointmentsForHomePage', [
+                            'AppointmentsFor' => 'today',
+                            'appointments' => $appointmentsForToday,
+                        ])
+                    </div>
+
+                </div>
+                <br>
+                <div id="AppointmentsForLaterOn" class=" @if (App::getLocale() == 'ar') rtlME @endif">
+                    @include('AppointmentsForHomePage', [
+                        'AppointmentsFor' => 'laterOn',
+                        'appointments' => $appointmentsTomorrow,
+                    ])
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -88,16 +64,15 @@
 
 
     </div>
-    <div @if (app()->getlocale() == 'ar')
-        style="direction:rtl"
-        @endif class="modal fade " id="myModal" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-        style="display: none;">
+    <div @if (app()->getlocale() == 'ar') style="direction:rtl" @endif class="modal fade " id="myModal" tabindex="-1"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">{{ __('lang.choosePaymentType') }}</h5>
-                    <button type="button" class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif " data-dismiss="modal" aria-label="Close">
+                    <button type="button"
+                        class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif "
+                        data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -165,16 +140,15 @@
     {{--  --}}
 
 
-    <div @if (app()->getlocale() == 'ar')
-        style="direction:rtl"
-        @endif class="modal fade " id="myModal1" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-        style="display: none;">
+    <div @if (app()->getlocale() == 'ar') style="direction:rtl" @endif class="modal fade " id="myModal1" tabindex="-1"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalCenterTitle">{{ __('lang.addPatient') }}</h3>
-                    <button type="button" class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif " data-dismiss="modal" aria-label="Close">
+                    <button type="button"
+                        class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif "
+                        data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -191,16 +165,15 @@
 
 
 
-    <div @if (app()->getlocale() == 'ar')
-        style="direction:rtl"
-        @endif class="modal fade " id="addAppointment" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-        style="display: none;">
+    <div @if (app()->getlocale() == 'ar') style="direction:rtl" @endif class="modal fade " id="addAppointment"
+        tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalCenterTitle">{{ __('lang.addAppointment') }}</h3>
-                    <button type="button" class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif " data-dismiss="modal" aria-label="Close">
+                    <button type="button"
+                        class="btn @if (app()->getlocale() == 'ar') float-left @else float-right @endif "
+                        data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -270,14 +243,16 @@
 
                                         <label for="customCheck1">{{ __('lang.isDone') }}</label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="isDone" id="inlineRadio1"
-                                                value="1">
-                                            <label class="form-check-label" for="inlineRadio1">{{ __('lang.yes') }}</label>
+                                            <input class="form-check-input" type="radio" name="isDone"
+                                                id="inlineRadio1" value="1">
+                                            <label class="form-check-label"
+                                                for="inlineRadio1">{{ __('lang.yes') }}</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input checked class="form-check-input" type="radio" name="isDone"
                                                 id="inlineRadio2" value="0">
-                                            <label class="form-check-label" for="inlineRadio2">{{ __('lang.no') }}</label>
+                                            <label class="form-check-label"
+                                                for="inlineRadio2">{{ __('lang.no') }}</label>
                                         </div>
 
 
@@ -292,7 +267,8 @@
                                     <textarea rows="2" class="form-control" id="note" name="notes"
                                         placeholder="{{ __('lang.AppointmentNotesPlaceHolder') }}">{{ old('notes') }}</textarea>
 
-                                    @error('notes')<div id="error" style="direction: ltr !important;"
+                                    @error('notes')
+                                        <div id="error" style="direction: ltr !important;"
                                             class="card text-white bg-danger">
                                             <span><i class="fas fa-exclamation-triangle"></i> {{ $message }}</span>
                                         </div>
@@ -359,7 +335,7 @@
 
 
 
-                        
+
                     </form>
                 </div>
 
@@ -401,40 +377,39 @@
         </div>
     </div>
     <script>
-
-document.getElementById('inlineRadio1').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "block";
-                                } else
-                                    document.getElementById('Payments').style.display = "none";
-
-
-                            });
-
-                            document.getElementById('inlineRadio2').addEventListener('change', function() {
-                                if (this.checked == '1') {
-                                    document.getElementById('Payments').style.display = "none";
-                                } else
-                                    document.getElementById('Payments').style.display = "block";
+        document.getElementById('inlineRadio1').addEventListener('change', function() {
+            if (this.checked == '1') {
+                document.getElementById('Payments').style.display = "block";
+            } else
+                document.getElementById('Payments').style.display = "none";
 
 
-                            });
+        });
 
-                            document.getElementById('payment_type').addEventListener('change', function() {
-                                var x = document.getElementById('payment');
-                                if (this.value != null) x.disabled = false;
-                                if (this.value != 'cash') {
-                                    x.value = "";
-                                    x.type = 'text';
-                                    if (document.getElementById('Currency').style.display == "block") {
-                                        document.getElementById('Currency').style.display = "none";
-                                    }
-                                } else {
-                                    x.value = "";
-                                    x.type = 'number';
-                                    document.getElementById('Currency').style.display = "block";
-                                }
-                            });
+        document.getElementById('inlineRadio2').addEventListener('change', function() {
+            if (this.checked == '1') {
+                document.getElementById('Payments').style.display = "none";
+            } else
+                document.getElementById('Payments').style.display = "block";
+
+
+        });
+
+        document.getElementById('payment_type').addEventListener('change', function() {
+            var x = document.getElementById('payment');
+            if (this.value != null) x.disabled = false;
+            if (this.value != 'cash') {
+                x.value = "";
+                x.type = 'text';
+                if (document.getElementById('Currency').style.display == "block") {
+                    document.getElementById('Currency').style.display = "none";
+                }
+            } else {
+                x.value = "";
+                x.type = 'number';
+                document.getElementById('Currency').style.display = "block";
+            }
+        });
 
         $(".addAjaxAppointment").click(function(event) {
             event.preventDefault();
@@ -483,7 +458,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
                         url: "/go/fetch_data/?page=" + 1,
                         success: function(data) {
 
-
+                            location.reload();
                             $('#ContentHere').html("" + data + "");
                             $('[data-toggle="popover"]').popover();
                             $('[data-toggle="tooltip"]').tooltip();
@@ -570,6 +545,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
                     _token: _token
                 },
                 success: function(response) {
+                    location.reload();
                     toastr.success(response['success']);
                     $("#confirm-delete").modal('hide');
                     $.ajax({
@@ -668,6 +644,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
                     _token: _token
                 },
                 success: function(response) {
+                    location.reload();
                     $.ajax({
                         url: "/go/fetch_data/?page=" + 1,
                         success: function(data) {
@@ -759,7 +736,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
-   
+
         $(document).ready(function() {
 
             $(document).on('click', '#ContentHere .pagination a', function(event) {
@@ -780,7 +757,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
                 $.ajax({
                     url: "/patient/create",
                     success: function(data) {
-
+                        
 
                         $('#ajaxgo').html(data);
 
@@ -797,7 +774,7 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
                     url: "/go/fetch_data/?page=" + page,
                     success: function(data) {
 
-
+                        
                         $('#ContentHere').html("" + data + "");
                         $('[data-toggle="popover"]').popover();
 
@@ -827,5 +804,4 @@ document.getElementById('inlineRadio1').addEventListener('change', function() {
 
         });
     </script>
-
 @endsection

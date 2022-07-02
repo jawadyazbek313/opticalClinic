@@ -14,7 +14,7 @@ class CreateAppointmentsTable extends Migration
     public function up()
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('date', 45)->nullable();
             $table->string('time', 25)->nullable();
             $table->boolean('isDone')->nullable()->default(0);

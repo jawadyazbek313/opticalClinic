@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="card">
+<div class="card container">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.role.title_singular') }}
     </div>

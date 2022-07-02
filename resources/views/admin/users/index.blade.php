@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @can('users_manage')
-    <div style="margin-bottom: 10px;" class="row">
+    <div style="margin-bottom: 10px;" class="container">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("users.create") }}">
                 {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
@@ -9,7 +9,7 @@
         </div>
     </div>
 @endcan
-<div class="card">
+<div class="card container">
     <div class="card-header">
         {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
     </div>

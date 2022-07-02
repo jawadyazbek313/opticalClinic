@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid" @if (app()->getLocale()=='ar') style="direction:rtl !important" @endif>
+<div class="container" @if (app()->getLocale()=='ar') style="direction:rtl !important" @endif>
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("permissions.create") }}">

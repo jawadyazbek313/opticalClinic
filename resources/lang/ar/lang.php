@@ -114,4 +114,5 @@ return array (
   array (
     'title_singular' => 'إذن',
   ),
+  'addPatientWithAppointment' => 'إضافة مريض مع موعد',
 );

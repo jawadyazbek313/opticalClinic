@@ -14,7 +14,7 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->text('payment')->nullable();
             $table->string('payment_type', 45)->nullable();
             $table->string('payment_currency', 3)->nullable();

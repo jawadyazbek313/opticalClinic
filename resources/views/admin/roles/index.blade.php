@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
+<div style="margin-bottom: 10px;" class="container">
+    <div class="col-lg-12 container">
         <a class="btn btn-success" href="{{ route("roles.create") }}">
             {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
         </a>
     </div>
 </div>
-<div class="card">
+<div class="card container">
     <div class="card-header">
         {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
     </div>

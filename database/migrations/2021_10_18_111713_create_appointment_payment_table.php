@@ -14,13 +14,10 @@ class CreateAppointmentPaymentTable extends Migration
     public function up()
     {
         Schema::create('appointment_payment', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->integer('appointment_id');
-            $table->integer('payment_id');
-            
-            $table->foreign('payment_id', 'appointment_payment_ibfk_1')->references('id')->on('payments')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('appointment_id', 'appointment_payment_ibfk_2')->references('id')->on('appointments')->onDelete('cascade')->onUpdate('cascade');
-        });
+            $table->id();
+            $table->integer('appointment_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('payment_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            });
     }
 
     /**

@@ -54,7 +54,8 @@
                                         <div class="form-group">
                                             <label for="insurancetype">{{ __('lang.inpInsuranceType') }}</label>
                                             <select class="form-control border" name="insurancetype">
-                                                <option value="" selected hidden>{{ __('lang.inpInsuranceTypeLabel') }}
+                                                <option value="" selected hidden>
+                                                    {{ __('lang.inpInsuranceTypeLabel') }}
                                                 </option>
                                                 <option value="NSSF">{{ __('lang.InsuranceTypeOpt1') }}</option>
                                                 <option value="Hay2a">{{ __('lang.InsuranceTypeOpt2') }}</option>
@@ -79,7 +80,8 @@
                                         <div class="form-group">
                                             <label for="bloodtype">{{ __('lang.inpBloodType') }}</label>
                                             <select class="form-control border" name="bloodtype">
-                                                <option value="" selected hidden>{{ __('lang.inpBloodTypeLabel') }}
+                                                <option value="" selected hidden>
+                                                    {{ __('lang.inpBloodTypeLabel') }}
                                                 </option>
                                                 <option value="A+">A+</option>
                                                 <option value="B+">B+</option>
@@ -131,8 +133,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="diag">{{ __('lang.InpDiag') }}</label>
-                                            <textarea rows="2" class="form-control" name="diag"
-                                                placeholder="{{ __('lang.InpDiagPlaceHolder') }}">{{ old('diag') }}</textarea>
+                                            <textarea rows="2" class="form-control" name="diag" placeholder="{{ __('lang.InpDiagPlaceHolder') }}">{{ old('diag') }}</textarea>
                                             @error('diag')
                                                 <div id="error" style="direction: ltr !important;"
                                                     class="card text-white bg-danger"><span><i
@@ -149,8 +150,9 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="job">{{ __('lang.inpJob') }}</label>
-                                            <input type="text" value="{{ old('firstname') }}" class="form-control"
-                                                name="job" placeholder="{{ __('lang.inpJobPlaceHolder') }}">
+                                            <input type="text" value="{{ old('firstname') }}"
+                                                class="form-control" name="job"
+                                                placeholder="{{ __('lang.inpJobPlaceHolder') }}">
 
                                         </div>
                                     </div>
@@ -222,9 +224,16 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card border-bottom-info shadow">
                     <div class="card-body justify-content-center text-center">
+                       
+                            <div class="row">
+                                <div class="col-6"> <button class="btn btn-block btn-success" onclick="AddPatient()"
+                                        type="button">{{ __('lang.addPatient') }}</button></div>
+                                <div class="col-6"> <button class="btn btn-block btn-success" onclick="AddPatientwithAppointment()"
+                                        type="button">{{ __('lang.addPatientWithAppointment') }}</button></div>
+                            </div class="row">
+                        </div>
 
-                        <button class="btn btn-block btn-success" onclick="AddPatient()"
-                            type="button">{{ __('lang.addPatient') }}</button>
+
                     </div>
 
                 </div>
@@ -268,27 +277,28 @@
     }
 
     @if (Session::has('success'))
-        $(function(){
-        toastr.options =
-        {
-        "closeButton" : true,
-        "progressBar" : true,
-        "positionClass": "toast-bottom-right"
-        }
-        toastr.options.rtl = true;
-        toastr.success("{{ Session::get('success') }}");
+        $(function() {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right"
+            }
+            toastr.options.rtl = true;
+            toastr.success("{{ Session::get('success') }}");
         })
     @endif
     @if (Session::has('failed'))
-        $(function(){
-        toastr.options{"positionClass": "toast-bottom-right"};
-        toastr.danger("{{ Session::get('failed') }}");
+        $(function() {
+            toastr.options {
+                "positionClass": "toast-bottom-right"
+            };
+            toastr.danger("{{ Session::get('failed') }}");
         })
     @endif
 
 
     // JavaScript function to add patient from ajax form with live validation
-    function AddPatient() {
+    function AddPatient(withAppointment) {
 
         let firstname = $("input[name=firstname]").val();
         let midname = $("input[name=midname]").val();
@@ -326,7 +336,7 @@
 
             },
             success: function(response) {
-
+                location.reload();
                 toastr.options = {
                     "closeButton": true,
                     "progressBar": true,
@@ -347,6 +357,67 @@
             }
         });
     }
+    function AddPatientwithAppointment() {
+
+let firstname = $("input[name=firstname]").val();
+let midname = $("input[name=midname]").val();
+let lastname = $("input[name=lastname]").val();
+let gender = $("select[name=gender]").val();
+let insurancetype = $("select[name=insurancetype]").val();
+let bloodtype = $("select[name=bloodtype]").val();
+let dob = $("input[name=dob]").val();
+let job = $("input[name=job]").val();
+let diag = $("textarea[name=diag]").val();
+let _token = $('meta[name="csrf-token"]').attr('content');
+let address = $("textarea[name=address]").val();
+let number = $("input[name=number]").val();
+let maincomplaint = $("textarea[name=maincomplaint]").val();
+let withAppointment = true;
+
+$.ajax({
+    url: "/patient",
+    type: "post",
+
+    data: {
+        firstname: firstname,
+        midname: midname,
+        lastname: lastname,
+        gender: gender,
+        insurancetype: insurancetype,
+        dob: dob,
+        bloodtype: bloodtype,
+        job: job,
+        diag: diag,
+        address: address,
+        number: number,
+        maincomplaint: maincomplaint,
+        withAppointment: true,
+        _token: _token,
+
+
+    },
+    success: function(response) {
+        location.reload();
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right"
+        }
+        toastr.success("Added successfully");
+        $('#ajaxgo1')[0].reset();
+
+    },
+    error: function(response) {
+        $('.firstname_err').text(response.responseJSON.errors.firstname);
+        $('.midname_err').text(response.responseJSON.errors.midname);
+        $('.lastname_err').text(response.responseJSON.errors.lastname);
+        $('.gender_err').text(response.responseJSON.errors.gender);
+        $('.bloodtype_err').text(response.responseJSON.errors.bloodtype);
+        $('.dob_err').text(response.responseJSON.errors.dob);
+        $('.insurancetype_err').text(response.responseJSON.errors.insurancetype);
+    }
+});
+}
 
 
     jQuery(document).ready(function() {

@@ -114,4 +114,5 @@ return array (
   array (
     'title_singular' => 'Permission',
   ),
+  'addPatientWithAppointment' => 'Add Patient With Appointment',
 );

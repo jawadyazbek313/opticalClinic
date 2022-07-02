@@ -8,6 +8,7 @@ function deleteMe(id) {
             id: id
         },
         success: function(response) {
+            location.reload();
             $("#confirm-delete").modal("hide");
             toastr.options = {
                 closeButton: true,
@@ -51,6 +52,7 @@ function deleteAppointment(id) {
             id: id
         },
         success: function(response) {
+            location.reload();
             $("#confirm-delete").modal("hide");
             toastr.options = {
                 closeButton: true,
