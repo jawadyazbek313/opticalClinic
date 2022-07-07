@@ -114,5 +114,8 @@ return array (
   array (
     'title_singular' => 'إذن',
   ),
+  'admin' => 'المدير',
   'addPatientWithAppointment' => 'إضافة مريض مع موعد',
+  'NotodayAppointment' => 'لا يوجد مواعيد اليوم',
+  'NotomorrowAppointment' => 'لا يوجد مواعيد ليوم غد',
 );

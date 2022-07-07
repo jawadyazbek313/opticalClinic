@@ -14,7 +14,7 @@
 <div class="card border-top-primary shadow h-100">
     <div class="RequestFor" data-type="{{ $AppointmentsFor }}"></div>
     <div class="card-body">
-        <h3>{{ ($AppointmentsFor=='today'? __('lang.todayAppointment'): __('lang.tomorrowAppointment') )}} : {{ $countme }}</h3>
+        <h3>{{ ($AppointmentsFor=='today'? __('lang.todayAppointment'): __('lang.tomorrowAppointment') )}} :  {{ ($AppointmentsFor=='today'? $countme: $countmeappointmentsTomorrow )}}</h3>
         <hr class="mb-0">
 
 
@@ -81,7 +81,10 @@
 </li>
 @endforeach
 @else
-<h3>No Appointments Today For Now!</h3>
+<span class="m-4 h1">
+{{ ($AppointmentsFor=='today'? __('lang.NotodayAppointment'): __('lang.NotomorrowAppointment') )}}
+</span>
+
 @endif
 </div>
 <div class="row justify-content-center">{{ $appointments->links() }}</div>

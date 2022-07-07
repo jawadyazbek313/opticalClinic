@@ -68,8 +68,7 @@ class HomeController extends Controller
             ->with('payment')
             ->paginate(7);
             $countmeappointmentsTomorrow = Appointment::select('id', 'date', 'isDone', 'notes')
-            ->where('trashed', 0)
-            ->where('date', '>', Carbon::tomorrow()->toDateString())->count();
+            ->where('date', '>', Carbon::today()->toDateString())->count();
          
         return view('home', compact('appointmentsTomorrow', 'countme', 'patients','appointmentsForToday','countmeappointmentsTomorrow'));
     }

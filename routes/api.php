@@ -21,32 +21,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/patients', function (Request $request) {
     if (isset($request->todayPatients)) {
-        if ($request->searchQuery && $request->searchQuery != "") {
+        if ($request->searchQuery && !(empty($request->searchQuery))) {
 
 
 
 
-            $patients = Patient::whereHas('appointment', function ($query) {
-                $query->where('date', '=', date('Y-m-d'))->where('isDone', 0);
-            })->where('firstname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('midname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('lastname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('insurance', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('dob', 'LIKE', '%' . $request->searchQuery . '%')
-
-
+            $patients =
+                Patient::whereHas('appointment', function ($query) {
+                    $query
+            ->where('trashed', 0)
+            ->where('date', '=', date('Y-m-d'))->where('isDone', 0);
+                })
+                ->where('firstname', 'LIKE', '%' . $request->searchQuery . '%') 
                 ->with('MediaManually')
                 ->withCount('MediaManually')
                 ->paginate(5);
-
-
 
             return $patients;
         } else {
 
             $patients = Patient::whereHas('appointment', function ($query) {
-                $query->where('date', '=', date('Y-m-d'))->where('isDone', 0);
-            })->with('MediaManually')->withCount('MediaManually')->paginate(5);
+                $query->where('date', '=', date('Y-m-d'))->where('isDone', 0)
+            ->where('trashed', 0);
+        })->with('MediaManually')->withCount('MediaManually')->paginate(5);
             return $patients;
         }
     } else {

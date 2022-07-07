@@ -115,4 +115,7 @@ return array (
     'title_singular' => 'Permission',
   ),
   'addPatientWithAppointment' => 'Add Patient With Appointment',
+  'NotodayAppointment' => 'There are no Appointments For Today',
+  'admin' => 'Admin',
+  'NotomorrowAppointment' => 'There are no Appointments For Tomorrow',
 );

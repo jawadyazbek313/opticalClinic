@@ -412,7 +412,7 @@
         });
 
         $(".addAjaxAppointment").click(function(event) {
-            event.preventDefault();
+            
 
 
             let patient_id = $("#addAppointment select[name=patient_id]").val();
@@ -454,50 +454,51 @@
                     _token: _token
                 },
                 success: function(response) {
-                    $.ajax({
-                        url: "/go/fetch_data/?page=" + 1,
-                        success: function(data) {
+                    location.reload();
+                    // $.ajax({
+                    //     url: "/go/fetch_data/?page=" + 1,
+                    //     success: function(data) {
 
-                            location.reload();
-                            $('#ContentHere').html("" + data + "");
-                            $('[data-toggle="popover"]').popover();
-                            $('[data-toggle="tooltip"]').tooltip();
-                            $(".OpenModal").click(function(event) {
+                           
+                    //         $('#ContentHere').html("" + data + "");
+                    //         $('[data-toggle="popover"]').popover();
+                    //         $('[data-toggle="tooltip"]').tooltip();
+                    //         $(".OpenModal").click(function(event) {
 
-                                $('#myModal').modal('show');
-                                var pat_id = $(this).attr('data-patient_id');
-                                var app_id = $(this).attr('data-appointment_id');
-                                $("input[name=patient_id]").val(pat_id);
-                                $("input[name=appointment_id]").val(app_id);
+                    //             $('#myModal').modal('show');
+                    //             var pat_id = $(this).attr('data-patient_id');
+                    //             var app_id = $(this).attr('data-appointment_id');
+                    //             $("input[name=patient_id]").val(pat_id);
+                    //             $("input[name=appointment_id]").val(app_id);
 
-                            });
-                            $(".btnAbort").click(function(event) {
+                    //         });
+                    //         $(".btnAbort").click(function(event) {
 
-                                let appointment_id = $(this).attr(
-                                    'data-appointmentid');
-                                $('input[name=appointmentidtrash]').val(
-                                    appointment_id);
+                    //             let appointment_id = $(this).attr(
+                    //                 'data-appointmentid');
+                    //             $('input[name=appointmentidtrash]').val(
+                    //                 appointment_id);
 
-                                $("#confirm-delete").modal('show');
-
-
-
-                            });
-
-                        }
-                    });
-
-                    toastr.options = {
-                        "closeButton": true,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right"
-                    }
-                    toastr.success(response['success']);
+                    //             $("#confirm-delete").modal('show');
 
 
-                    $('#addAppointment').modal('hide');
-                    $("#addAppointmentAjax")[0].reset();
-                    $(".filter-option-inner-inner").html("Choose Patient");
+
+                    //         });
+
+                    //     }
+                    // });
+
+                    // toastr.options = {
+                    //     "closeButton": true,
+                    //     "progressBar": true,
+                    //     "positionClass": "toast-top-right"
+                    // }
+                    // toastr.success(response['success']);
+
+
+                    // $('#addAppointment').modal('hide');
+                    // $("#addAppointmentAjax")[0].reset();
+                    // $(".filter-option-inner-inner").html("Choose Patient");
 
 
                 },
