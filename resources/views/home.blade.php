@@ -183,17 +183,17 @@
                             <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                     <label for="patient_id">Choose Patient</label>
-                                    <select id="patient_idjax" name="patient_id"
-                                        class="selectpicker form-control justify-content-center" data-live-search="true"
+                                    <div id="patient_idjax" name="patient_id" >
+                                        {{-- class="selectpicker form-control justify-content-center" data-live-search="true"
                                         data-size="8" data-virtualScroll="true">
                                         <option selected hidden value=""></option>
                                         @foreach ($patients as $patient)
                                             <option value="{{ $patient->id }}" data-subtext=" {{ $patient->dob }} ">
                                                 {{ $patient->firstname . ' ' . $patient->midname . ' ' . $patient->lastname }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
 
-                                    </select>
+                                    </div>
 
 
 
@@ -734,12 +734,34 @@
                 document.getElementById('Currency1').style.display = "block";
             }
         });
+      
+
         $(document).ready(function() {
+//             $( "#patient_idjax" ).select2({
+//         ajax: { 
+//           url: "{{route('patient.search')}}",
+//           type: "post",
+//           dataType: 'json',
+//           delay: 250,
+//           data: function (params) {
+//             return {
+//                _token: CSRF_TOKEN,
+//                search: params.term // search term
+//             };
+//           },
+//           processResults: function (response) {
+//             return {
+//               results: response
+//             };
+//           },
+//           cache: true
+//         }
+
+//      });
+
+//    });
+
             $('[data-toggle="tooltip"]').tooltip();
-        });
-
-        $(document).ready(function() {
-
             $(document).on('click', '#ContentHere .pagination a', function(event) {
                 event.preventDefault();
                 var page = $(this).attr('href').split('page=')[1];

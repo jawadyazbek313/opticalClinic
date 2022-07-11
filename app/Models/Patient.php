@@ -71,6 +71,15 @@ class Patient extends Model implements HasMedia
     ];
 
 
+    public function getIDandFullnameAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'fullname' => $this->firstname . ' ' . $this->midname . ' ' . $this->lastname
+        ];
+    }
+  
+
     function relations() {
         return $this->hasMany(Relation::class);
      }

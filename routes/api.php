@@ -2,6 +2,7 @@
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,10 +30,10 @@ Route::get('/patients', function (Request $request) {
             $patients =
                 Patient::whereHas('appointment', function ($query) {
                     $query
-            ->where('trashed', 0)
-            ->where('date', '=', date('Y-m-d'))->where('isDone', 0);
+                        ->where('trashed', 0)
+                        ->where('date', '=', date('Y-m-d'))->where('isDone', 0);
                 })
-                ->where('firstname', 'LIKE', '%' . $request->searchQuery . '%') 
+                ->where('firstname', 'LIKE', '%' . $request->searchQuery . '%')
                 ->with('MediaManually')
                 ->withCount('MediaManually')
                 ->paginate(5);
@@ -42,8 +43,8 @@ Route::get('/patients', function (Request $request) {
 
             $patients = Patient::whereHas('appointment', function ($query) {
                 $query->where('date', '=', date('Y-m-d'))->where('isDone', 0)
-            ->where('trashed', 0);
-        })->with('MediaManually')->withCount('MediaManually')->paginate(5);
+                    ->where('trashed', 0);
+            })->with('MediaManually')->withCount('MediaManually')->paginate(5);
             return $patients;
         }
     } else {
@@ -88,3 +89,16 @@ Route::post('/UploadFiles', function (Request $request) {
         return "Successfully Uploaded";
     else return "Error";
 });
+
+Route::get(
+    '/getPatientsQuery',
+    function (Request $request) {
+        $patients = Patient::select('id AS value',DB::Raw("CONCAT(firstname, ' ', midname, ' ', lastname, ' (', dob, ' )') AS label"))->
+            where('firstname', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('midname', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('lastname', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('insurance', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('dob', 'LIKE', '%' . $request->search . '%')->limit(100)->get();
+        return $patients;
+    }
+)->name('patient.search');
