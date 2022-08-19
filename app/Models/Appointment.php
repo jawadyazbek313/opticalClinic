@@ -41,7 +41,7 @@ class Appointment extends Model
      }
 
      function patient() {
-        return $this->belongsToMany(Patient::class);
+        return $this->belongsToMany(Patient::class, 'appointment_patient', 'appointment_id', 'patient_id');
      }
      function payment(){
         return $this->belongsToMany(Payment::class);

@@ -7,6 +7,7 @@ import UsersListWithShowFileAction from './Home/UsersListWithShowFileAction';
 export default function UsersListToSeeFiles() {
     const [UsersData,setUsersData] = useState([]);
     const [isLoading,setisLoading]=useState(false);
+
     useEffect(() => {
 
 
@@ -15,6 +16,7 @@ export default function UsersListToSeeFiles() {
     return (<>
     <StrictMode>
     <TabsForTodayOrAllPatients />
+
     </StrictMode></>);
     return (
         <>

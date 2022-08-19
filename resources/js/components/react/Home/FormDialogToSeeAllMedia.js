@@ -9,6 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
+
 import AddIcon from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
@@ -37,7 +38,7 @@ function SimpleDialog(props) {
             <List sx={{ pt: 0 }}>
                 <ListItem disabled style={{ color: "black" }}>
                     <Grid sx={{ pt: 0 }} container spacing={1}>
-                        <Grid xs={8} item>
+                        <Grid xs={6} item>
                             Name
                         </Grid>
                         <Grid xs={2} item>
@@ -46,11 +47,17 @@ function SimpleDialog(props) {
                         <Grid xs={2} item>
                             Upload Date
                         </Grid>
+                        <Grid xs={2} item>
+                            Action
+                        </Grid>
                     </Grid>
                 </ListItem>
                 {data.map((row) => (
                  
-                  <FilesListItem key={row.uuid} data={row} handleListItemClick={handleListItemClick} />
+                  <FilesListItem
+                  DeleteFile={props.DeleteFile}
+                  onClose={onClose}
+                  key={row.uuid} data={row} handleListItemClick={handleListItemClick} />
                 ))}
             </List>
         </Dialog>
@@ -72,6 +79,7 @@ export default function FormDialogToSeeAllMedia(props) {
         <>
             <Button onClick={handleClickOpen}><i className="fas fa-folder-open mr-1"></i> All Files</Button>
             <SimpleDialog
+            DeleteFile={props.DeleteFile}
                 setOpenPDFViewer={props.setOpenPDFViewer}
                 setCurrentFile={props.setCurrentFile}
                 data={props.data}

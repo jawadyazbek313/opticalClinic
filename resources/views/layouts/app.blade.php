@@ -10,8 +10,12 @@
 
 
     @livewireStyles
+  
+    @powerGridStyles
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <style>.swal2-container {
+        z-index: 20000 !important;
+      }</style>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
@@ -21,14 +25,12 @@
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('js/gijgo.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
     <!-- Fonts -->
     {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
     <!-- Styles -->
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }} " rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link href="{{ asset('css/gijgo.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/bootstrap-select.css') }} " rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -55,6 +57,7 @@
         .nav-item:hover .dropdown-menu {
             display: block;
         }
+
         .dropdown-menu {
             margin-top: 0;
         }
@@ -69,8 +72,8 @@
             data-nav-status="toggle">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img style="transition: all 0.5s ease-in-out;" class="hoverbadges"
-                        src="{{ asset('images/logo (1).png') }}" height="30px" alt="">
+                    <img style="transition: all 0.5s ease-in-out; height: 30px !important;" class="hoverbadges"
+                        src="{{ asset('images/logo (1).png') }}"   alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -250,8 +253,9 @@
     <script>
         $.fn.selectpicker.Constructor.BootstrapVersion = '4';
     </script>
-    @livewireScripts
 
+@livewireScripts
+@powerGridScripts
 </body>
 
 </html>

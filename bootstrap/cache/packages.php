@@ -52,6 +52,13 @@
       0 => 'Filament\\Forms\\FormsServiceProvider',
     ),
   ),
+  'filament/notifications' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Notifications\\NotificationsServiceProvider',
+    ),
+  ),
   'filament/support' => 
   array (
     'providers' => 

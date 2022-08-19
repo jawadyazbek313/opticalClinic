@@ -44,6 +44,15 @@ export default function UsersListWithShowFileAction(props) {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [open, setOpen] = useState(false);
+    function DeleteFile(id) {
+        axios.get("/api/DeleteFile",{
+            params:{
+                id:id
+            }
+        }).then((result)=>{
+            setRefresh(!refresh);
+        });
+    }
     function setNewData(results) {
         setRows(results.data.data);
         setData(results.data);
@@ -295,6 +304,7 @@ export default function UsersListWithShowFileAction(props) {
                                             </Button>
 
                                             <FormDialogToSeeAllMedia
+                                            DeleteFile={DeleteFile}
                                                 data={row.media_manually}
                                                 setCurrentFile={setCurrentFile}
                                                 setOpenPDFViewer={setOpen}

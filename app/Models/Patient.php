@@ -78,28 +78,32 @@ class Patient extends Model implements HasMedia
             'fullname' => $this->firstname . ' ' . $this->midname . ' ' . $this->lastname
         ];
     }
-  
 
-    function relations() {
+
+    function relations()
+    {
         return $this->hasMany(Relation::class);
-     }
+    }
 
-     function appointment() {
-        return $this->belongsToMany(Appointment::class);
-     }
+    function appointment()
+    {
+        return $this->belongsToMany(Appointment::class, 'appointment_patient', 'patient_id', 'appointment_id');
+    }
 
-     function payment(){
-        return $this->belongsToMany(Payment::class);
-     }
-     public function registerMediaConversions(Media $media = null): void
-{
-    $this
-        ->addMediaConversion('preview')
-        ->fit(Manipulations::FIT_CROP, 300, 300)
-        ->nonQueued();
-}
+    function payment()
+    {
+        return $this->belongsToMany(Payment::class, 'patient_payment', 'patient_id', 'payment_id');
+    }
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
+    }
 
-    function MediaManually() {
+    function MediaManually()
+    {
         return $this->hasMany(Media::class, 'model_id', 'id')->where('model_type', 'App\Models\Patient');
     }
 }

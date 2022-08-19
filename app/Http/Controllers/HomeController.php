@@ -58,7 +58,7 @@ class HomeController extends Controller
         $countme = Appointment::select('id', 'date', 'isDone', 'notes')
             ->where('trashed', 0)
             ->where('date', '=', date('Y-m-d'))->count();
-        $patients = Patient::select('id', 'firstname', 'midname', 'lastname', 'dob')->get();
+        $patients = Patient::select('id', 'firstname', 'midname', 'lastname', 'dob')->limit(50)->get();
 
         $appointmentsTomorrow = Appointment::select('id', 'date', 'time', 'isDone', 'notes')
             ->where('date', '=', Carbon::tomorrow()->toDateString())->orderBy('isDone', 'ASC')

@@ -4,6 +4,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::get('/patients', function (Request $request) {
                         ->where('trashed', 0)
                         ->where('date', '=', date('Y-m-d'))->where('isDone', 0);
                 })
-                ->where('firstname', 'LIKE', '%' . $request->searchQuery . '%')
+                ->where(DB::raw('CONCAT(firstname, \' \', midname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
                 ->with('MediaManually')
                 ->withCount('MediaManually')
                 ->paginate(5);
@@ -48,14 +49,10 @@ Route::get('/patients', function (Request $request) {
             return $patients;
         }
     } else {
-
         if ($request->searchQuery && $request->searchQuery != "") {
-
-            $patients = Patient::where('firstname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('midname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('lastname', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('insurance', 'LIKE', '%' . $request->searchQuery . '%')
-                ->orWhere('dob', 'LIKE', '%' . $request->searchQuery . '%')
+            $patients = Patient::where(DB::raw('CONCAT(firstname, \' \', midname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
+                ->orWhere('insurance', 'LIKE',  '%' .  $request->searchQuery . '%')
+                ->orWhere('dob', 'LIKE',  '%' .  $request->searchQuery . '%')
                 ->with('MediaManually')
                 ->withCount('MediaManually')
                 ->paginate(5);
@@ -70,7 +67,21 @@ Route::get('/patients', function (Request $request) {
     }
 });
 
-
+Route::get('/GetSelectPatient', function (Request $request) {
+    $limitPatient=20;
+    if ($request->searchQuery && $request->searchQuery != "") {
+        return Patient::select('id', 'firstname', 'midname', 'lastname','dob')
+        ->where(DB::raw('CONCAT(firstname, \' \', midname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
+        ->limit($limitPatient)
+        ->get();
+    }
+    else {
+        return Patient::select('id', 'firstname', 'midname', 'lastname','dob')
+        ->limit($limitPatient)
+        ->get();
+    }
+  
+});
 Route::get('/PatientgetLastPDF', function (Request $request) {
     $patient = Patient::Find($request->patient_id);
     $mediaItems = $patient->getMedia();
@@ -90,15 +101,9 @@ Route::post('/UploadFiles', function (Request $request) {
     else return "Error";
 });
 
-Route::get(
-    '/getPatientsQuery',
-    function (Request $request) {
-        $patients = Patient::select('id AS value',DB::Raw("CONCAT(firstname, ' ', midname, ' ', lastname, ' (', dob, ' )') AS label"))->
-            where('firstname', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('midname', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('lastname', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('insurance', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('dob', 'LIKE', '%' . $request->search . '%')->limit(100)->get();
-        return $patients;
-    }
-)->name('patient.search');
+Route::get('/DeleteFile', function (Request $request) {
+    $media = Media::find($request->id);
+    if ($media->delete()) {
+        return "Success";
+    } else return "fail";
+})->name("file.delete");

@@ -18,6 +18,7 @@
             <div class="col">
 
                 <div class="col">
+
                     <div id="AppointmentsForToday" class=" @if (App::getLocale() == 'ar') rtlME @endif">
                         @include('AppointmentsForHomePage', [
                             'AppointmentsFor' => 'today',
@@ -181,19 +182,20 @@
                     <form id="addAppointmentAjax">
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <label for="patient_id">Choose Patient</label>
-                                    <div id="patient_idjax" name="patient_id" >
-                                        {{-- class="selectpicker form-control justify-content-center" data-live-search="true"
+                                <input hidden id="patient_idjax" name="patient_id" value="">
+                                <div  id="AddAppointmentSelectInput">
+                                    {{-- <label for="patient_id">Choose Patient</label>
+                                    <select id="patient_idjax" name="patient_id"
+                                        class="selectpicker form-control justify-content-center" data-live-search="true"
                                         data-size="8" data-virtualScroll="true">
                                         <option selected hidden value=""></option>
                                         @foreach ($patients as $patient)
                                             <option value="{{ $patient->id }}" data-subtext=" {{ $patient->dob }} ">
                                                 {{ $patient->firstname . ' ' . $patient->midname . ' ' . $patient->lastname }}
                                             </option>
-                                        @endforeach --}}
+                                        @endforeach
 
-                                    </div>
+                                    </select> --}}
 
 
 
@@ -415,10 +417,10 @@
             
 
 
-            let patient_id = $("#addAppointment select[name=patient_id]").val();
+            let patient_id = $("#addAppointment input[name=patient_id]").val();
             if (!patient_id) {
                 toastr.warning("Please Choose patient First");
-
+                event.preventDefault();
                 return;
             }
             let date = $("#addAppointment input[name=date]").val();
@@ -734,34 +736,12 @@
                 document.getElementById('Currency1').style.display = "block";
             }
         });
-      
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
         $(document).ready(function() {
-//             $( "#patient_idjax" ).select2({
-//         ajax: { 
-//           url: "{{route('patient.search')}}",
-//           type: "post",
-//           dataType: 'json',
-//           delay: 250,
-//           data: function (params) {
-//             return {
-//                _token: CSRF_TOKEN,
-//                search: params.term // search term
-//             };
-//           },
-//           processResults: function (response) {
-//             return {
-//               results: response
-//             };
-//           },
-//           cache: true
-//         }
 
-//      });
-
-//    });
-
-            $('[data-toggle="tooltip"]').tooltip();
             $(document).on('click', '#ContentHere .pagination a', function(event) {
                 event.preventDefault();
                 var page = $(this).attr('href').split('page=')[1];
