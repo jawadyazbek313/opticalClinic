@@ -40,11 +40,13 @@ export default function AddAppointment() {
     return (
         <>
             <Autocomplete
+                
                 fullWidth
+                filterOptions={(x) => x}
                 style={{ marginTop: 20 }}
                 value={value}
                 onChange={(event, newValue) => {
-                    console.log(newValue);
+                    
                     setValue(newValue);
                     document.getElementById("patient_idjax").value =
                         newValue.id;

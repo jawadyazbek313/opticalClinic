@@ -71,7 +71,11 @@ Route::get('/GetSelectPatient', function (Request $request) {
     $limitPatient=20;
     if ($request->searchQuery && $request->searchQuery != "") {
         return Patient::select('id', 'firstname', 'midname', 'lastname','dob')
-        ->where(DB::raw('CONCAT(firstname, \' \', midname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
+        ->where(DB::raw('CONCAT(firstname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
+        ->orwhere(DB::raw('CONCAT(firstname, \' \', midname, \' \', lastname)'), 'LIKE',  '%' . $request->searchQuery . '%')
+        ->orWhere('firstname', 'LIKE',  '%' . $request->searchQuery . '%')
+        ->orWhere('midname', 'LIKE',  '%' . $request->searchQuery . '%')
+        ->orWhere('lastname', 'LIKE',  '%' . $request->searchQuery . '%')
         ->limit($limitPatient)
         ->get();
     }
