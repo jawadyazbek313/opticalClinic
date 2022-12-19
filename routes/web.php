@@ -10,6 +10,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Codedge\Updater\UpdaterManager;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Role;
@@ -82,14 +83,23 @@ Route::get('/UpdateApplication', function (UpdaterManager $updater) {
         // Get the current installed version
         echo $updater->source()->getVersionInstalled();
         // Get the new version available
-        $versionAvailable = $updater->source()->getVersionAvailable();
+        echo $versionAvailable = $updater->source()->getVersionAvailable();
         // Create a release
         $release = $updater->source()->fetch($versionAvailable);
         // Run the update process
+        
         $updater->source()->update($release);
+        $path = base_path('.env');
 
+        if (file_exists($path)) {
+            file_put_contents($path, str_replace(
+                'SELF_UPDATER_VERSION_INSTALLED='.$this->laravel['config']['app.key'], 'SELF_UPDATER_VERSION_INSTALLED='.$versionAvailable, file_get_contents($path)
+            ));
+            Artisan::call('config:cache');
+        }
     } else {
-        echo "No new version available.";
+        
+        echo "Latest Version installed ".$updater->source()->getVersionInstalled();
     }
 
 });
