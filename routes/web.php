@@ -95,7 +95,9 @@ Route::get('/UpdateApplication', function (UpdaterManager $updater) {
             file_put_contents($path, str_replace(
                 'SELF_UPDATER_VERSION_INSTALLED='.$this->laravel['config']['app.key'], 'SELF_UPDATER_VERSION_INSTALLED='.$versionAvailable, file_get_contents($path)
             ));
+            // Change Value Using It
             Artisan::call('config:cache');
+            
         }
     } else {
         
