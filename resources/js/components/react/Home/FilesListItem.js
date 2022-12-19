@@ -28,7 +28,7 @@ export default function FilesListItem(props) {
                     </Grid>
                     <Grid xs={2} item>
                         {" "}
-                        {new Date(props.data.created_at).toLocaleDateString()}
+                        {new Date(props.data.created_at).toLocaleString("en-US")}
                     </Grid>
                     <Grid xs={2} item alignItems={"center"}>
                         <IconButton

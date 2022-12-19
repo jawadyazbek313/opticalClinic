@@ -32,7 +32,7 @@ function SimpleDialog(props) {
     };
 
     return (
-        <Dialog fullWidth onClose={handleClose} open={open}>
+        <Dialog fullWidth maxWidth={"lg"} onClose={handleClose} open={open}>
             <DialogTitle>Select The File you want to Open</DialogTitle>
 
             <List sx={{ pt: 0 }}>
