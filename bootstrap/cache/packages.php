@@ -27,6 +27,17 @@
       0 => 'BladeUI\\Icons\\BladeIconsServiceProvider',
     ),
   ),
+  'codedge/laravel-selfupdater' => 
+  array (
+    'aliases' => 
+    array (
+      'Updater' => 'Codedge\\Updater\\UpdaterFacade',
+    ),
+    'providers' => 
+    array (
+      0 => 'Codedge\\Updater\\UpdaterServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 

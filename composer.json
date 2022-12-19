@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-translation-manager": "^0.5.10",
+        "codedge/laravel-selfupdater": "^3.5",
         "fideloper/proxy": "^4.4",
         "filament/forms": "^2.15",
         "fruitcake/laravel-cors": "^2.0",
@@ -67,7 +68,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

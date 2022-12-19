@@ -9,9 +9,11 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
+use Codedge\Updater\UpdaterManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Role;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,4 +70,30 @@ Route::middleware('auth')->get('setRole',function () {
     return Redirect::route('home');
 });
 
+
+// Route to Update The program Via the button
+Route::get('/UpdateApplication', function (UpdaterManager $updater) {
+
+
+
+    // Check if new version is available
+    if($updater->source()->isNewVersionAvailable()) {
+
+        // Get the current installed version
+        echo $updater->source()->getVersionInstalled();
+
+        // Get the new version available
+        $versionAvailable = $updater->source()->getVersionAvailable();
+
+        // Create a release
+        $release = $updater->source()->fetch($versionAvailable);
+
+        // Run the update process
+        $updater->source()->update($release);
+
+    } else {
+        echo "No new version available.";
+    }
+
+});
 
